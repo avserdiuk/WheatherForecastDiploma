@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomDailyWheatherAirQualityTableViewCell: UITableViewCell {
+class DailyWheatherAirQualityTableViewCell: UITableViewCell {
 
     private lazy var wrapperView = CVView(backgroundColor: .transparent, cornerRadius: 5)
     private lazy var titleLabel = CVLabel(text: dailyWheatherAirQualityTitleLabel, size: 18, weight: .regular)

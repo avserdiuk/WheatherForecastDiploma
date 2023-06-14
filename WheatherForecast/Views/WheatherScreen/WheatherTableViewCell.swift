@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTableViewCell: UITableViewCell {
+class WheatherTableViewCell: UITableViewCell {
 
     private lazy var wrapper = CVView(backgroundColor: .backgroundWhite, cornerRadius: 5)
     private lazy var dateLabel = CVLabel(text: "23/04", size: 16, weight: .regular, color: .textGray)

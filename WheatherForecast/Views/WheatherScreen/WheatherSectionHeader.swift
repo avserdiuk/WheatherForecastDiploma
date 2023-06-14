@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomSectionHeader: UITableViewHeaderFooterView {
+class WheatherSectionHeader: UITableViewHeaderFooterView {
 
     private lazy var titleLabel = CVLabel(text: mainSectionHeaderTitle, size: 18, weight: .semibold)
     private lazy var dayCountLabel = CVLabel(text: mainSectionHeaderAdditionTitle, size: 16, weight: .regular)

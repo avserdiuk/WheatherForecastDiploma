@@ -68,7 +68,7 @@ extension WheatherViewController : UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = CustomTableViewCell()
+        let cell = WheatherTableViewCell()
         if let wheather = wheather {
             cell.setup(wheather, indexPath)
         }
@@ -80,7 +80,7 @@ extension WheatherViewController : UITableViewDataSource {
 extension WheatherViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 1 else {
-            let cell = CustomTableHeader()
+            let cell = WheatherTableHeader()
             cell.viewController = self.viewController
             if let wheather = wheather {
                 cell.wheather = wheather
@@ -89,7 +89,7 @@ extension WheatherViewController : UITableViewDelegate {
             }
             return cell
         }
-        return CustomSectionHeader()
+        return WheatherSectionHeader()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTable24hViewCell: UITableViewCell {
+class ForecastTable24hViewCell: UITableViewCell {
 
     private lazy var wrapperView = CVView()
 

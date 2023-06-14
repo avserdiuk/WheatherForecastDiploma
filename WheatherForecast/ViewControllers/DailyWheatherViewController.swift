@@ -44,26 +44,26 @@ extension DailyWheatherViewController : UITableViewDataSource {
         guard let wheather else { return UITableViewCell() }
         
         if indexPath.row == 0 {
-            let cell = CustomDailyWheatherTableViewCell()
+            let cell = DailyWheatherTableViewCell()
             cell.setup("День", wheather.forecasts[index].parts.day, indexPath)
             return cell
         } else if indexPath.row == 1 {
-            let cell = CustomDailyWheatherTableViewCell()
+            let cell = DailyWheatherTableViewCell()
             cell.setup("Ночь", wheather.forecasts[index].parts.night, indexPath)
             return cell
         } else if indexPath.row == 2 {
-            let cell = CustomDailyWheatherDayNightTableViewCell()
+            let cell = DailyWheatherDayNightTableViewCell()
             cell.setup(wheather.forecasts[index])
             return cell
         } else {
-            return CustomDailyWheatherAirQualityTableViewCell()
+            return DailyWheatherAirQualityTableViewCell()
         }
     }
 }
 
 extension DailyWheatherViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = CustomDailyWheatherTableHeader()
+        let header = DailyWheatherTableHeader()
         header.wheather = wheather
         header.index = index
         header.delegate = self

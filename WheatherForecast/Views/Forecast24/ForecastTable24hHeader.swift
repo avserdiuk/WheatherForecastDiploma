@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTable24hHeader: UITableViewHeaderFooterView {
+class ForecastTable24hHeader: UITableViewHeaderFooterView {
 
     private lazy var image = CVImage(imageName: "graph")
 

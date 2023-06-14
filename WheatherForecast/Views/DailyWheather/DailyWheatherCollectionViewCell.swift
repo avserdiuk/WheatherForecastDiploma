@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomDailyWheatherCollectionViewCell: UICollectionViewCell {
+class DailyWheatherCollectionViewCell: UICollectionViewCell {
 
     private lazy var view = CVView(backgroundColor: .accentBlue)
     private lazy var titleLabel = CVLabel(text: "16/04 ПТ", size: 18, weight: .regular, color: .textBlack, tag: 1)

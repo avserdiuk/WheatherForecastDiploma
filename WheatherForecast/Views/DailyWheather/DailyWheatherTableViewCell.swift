@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomDailyWheatherTableViewCell: UITableViewCell {
+class DailyWheatherTableViewCell: UITableViewCell {
 
     var wheather : Wheather?
 
