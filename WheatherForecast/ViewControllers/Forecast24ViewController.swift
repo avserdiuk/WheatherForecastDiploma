@@ -62,7 +62,7 @@ extension Forecast24ViewController : UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = CustomTable24hViewCell()
+        let cell = ForecastTable24hViewCell()
         if let wheather = wheather {
             cell.setup(wheather, indexPath, indexMassive)
         }
@@ -72,7 +72,7 @@ extension Forecast24ViewController : UITableViewDataSource {
 
 extension Forecast24ViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = CustomTable24hHeader()
+        let cell = ForecastTable24hHeader()
         return cell
     }
 }

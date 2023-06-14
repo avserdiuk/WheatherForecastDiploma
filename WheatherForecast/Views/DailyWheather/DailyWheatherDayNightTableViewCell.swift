@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomDailyWheatherDayNightTableViewCell: UITableViewCell {
+class DailyWheatherDayNightTableViewCell: UITableViewCell {
 
     private lazy var wrapperView = CVView()
     private lazy var titleLabel = CVLabel(text: dailyWheatherSunMoonTitleLabel, size: 18, weight: .regular)

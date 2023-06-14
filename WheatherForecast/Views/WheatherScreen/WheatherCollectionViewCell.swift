@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomCollectionViewCell: UICollectionViewCell {
+class WheatherCollectionViewCell: UICollectionViewCell {
 
     private lazy var stackView = CVStackView(axis: .vertical, spacing: 5, alignment: .center)
 

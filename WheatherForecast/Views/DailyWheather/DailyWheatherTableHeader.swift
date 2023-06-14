@@ -1,5 +1,5 @@
 //
-//  CustomDailyWheatherTableHeader.swift
+//  DailyWheatherTableHeader.swift
 //  WheatherForecast
 //
 //  Created by Алексей Сердюк on 24.03.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomDailyWheatherTableHeader: UITableViewHeaderFooterView {
+class DailyWheatherTableHeader: UITableViewHeaderFooterView {
 
     weak var delegate: DailyWheatherViewController!
     var wheather : Wheather?
@@ -26,7 +26,7 @@ class CustomDailyWheatherTableHeader: UITableViewHeaderFooterView {
         collection.dataSource = self
         collection.delegate = self
         collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DefaultCell")
-        collection.register(CustomDailyWheatherCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")
+        collection.register(DailyWheatherCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")
         collection.showsHorizontalScrollIndicator = false
         return collection
     }()
@@ -60,7 +60,7 @@ class CustomDailyWheatherTableHeader: UITableViewHeaderFooterView {
 
 }
 
-extension CustomDailyWheatherTableHeader : UICollectionViewDataSource {
+extension DailyWheatherTableHeader : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         wheather?.forecasts.count ?? 0
     }
@@ -68,7 +68,7 @@ extension CustomDailyWheatherTableHeader : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let wheather else { return UICollectionViewCell()}
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomDailyWheatherCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! DailyWheatherCollectionViewCell
         cell.setup(wheather, indexPath)
 
         if indexPath.row == index {
@@ -87,7 +87,7 @@ extension CustomDailyWheatherTableHeader : UICollectionViewDataSource {
     }
 }
 
-extension CustomDailyWheatherTableHeader : UICollectionViewDelegateFlowLayout {
+extension DailyWheatherTableHeader : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate.index = indexPath.item
         delegate.view().tableView.reloadSections(IndexSet(integer: 0), with: .fade)

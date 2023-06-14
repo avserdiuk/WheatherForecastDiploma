@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTableHeader: UITableViewHeaderFooterView {
+class WheatherTableHeader: UITableViewHeaderFooterView {
 
     weak var viewController : UIViewController?
     var wheather : Wheather?
@@ -60,7 +60,7 @@ class CustomTableHeader: UITableViewHeaderFooterView {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DefaultCell")
-        collection.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")
+        collection.register(WheatherCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")
         collection.showsHorizontalScrollIndicator = false
         collection.dataSource = self
         collection.delegate = self
@@ -249,13 +249,13 @@ class CustomTableHeader: UITableViewHeaderFooterView {
 
 }
 
-extension CustomTableHeader : UICollectionViewDataSource {
+extension WheatherTableHeader : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 24
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! WheatherCollectionViewCell
 
         if indexPath.item == 1 {
             cell.contentView.backgroundColor = Colors.accentBlue.color
@@ -275,7 +275,7 @@ extension CustomTableHeader : UICollectionViewDataSource {
     }
 }
 
-extension CustomTableHeader : UICollectionViewDelegateFlowLayout {
+extension WheatherTableHeader : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 42, height: 84)
     }
