@@ -90,3 +90,5 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+*.xcuserstate
+WheatherForecast.xcodeproj/project.xcworkspace/xcuserdata/kesh.xcuserdatad/UserInterfaceState.xcuserstate
