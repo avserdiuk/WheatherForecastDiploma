@@ -43,10 +43,25 @@ class SettingView : UIView {
         self.backgroundColor = Colors.accentBlue.color
         setViews()
         setConstraints()
+        cloudAnimation()
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func cloudAnimation(){
+        UIView.animate(withDuration: 5, delay: 0) {
+            self.cloud1ImageView.center = CGPoint(x: 50, y: 0)
+            self.cloud1ImageView.alpha = 0.4
+            
+            self.cloud2ImageView.center = CGPoint(x: -50, y: 0)
+            self.cloud2ImageView.alpha = 0.6
+            
+            self.cloud3ImageView.center = CGPoint(x: 70, y: 0)
+            self.cloud3ImageView.alpha = 0.5
+        }
     }
     
     func setViews(){
