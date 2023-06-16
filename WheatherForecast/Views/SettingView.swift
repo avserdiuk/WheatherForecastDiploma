@@ -17,16 +17,16 @@ class SettingView : UIView {
     private lazy var settingTitle = CVLabel(text: settingsTitle, size: 18, weight: .regular, color: .textBlack)
     
     private lazy var settingItemStack = CVStackView(axis: .vertical, spacing: 30)
-    private lazy var settingItem1Label = CVLabel(text: settingsItem1, size: 16, weight: .regular, color: .textGray)
-    private lazy var settingItem2Label = CVLabel(text: settingsItem2, size: 16, weight: .regular, color: .textGray)
-    private lazy var settingItem3Label = CVLabel(text: settingsItem3, size: 16, weight: .regular, color: .textGray)
-    private lazy var settingItem4Label = CVLabel(text: settingsItem4, size: 16, weight: .regular, color: .textGray)
+    private lazy var settingItem0Label = CVLabel(text: settingsItem1, size: 16, weight: .regular, color: .textGray)
+    private lazy var settingItem1Label = CVLabel(text: settingsItem2, size: 16, weight: .regular, color: .textGray)
+    private lazy var settingItem2Label = CVLabel(text: settingsItem3, size: 16, weight: .regular, color: .textGray)
+    private lazy var settingItem3Label = CVLabel(text: settingsItem4, size: 16, weight: .regular, color: .textGray)
     
     private lazy var settingItemStack2 = CVStackView(axis: .vertical, spacing: 18)
-    private lazy var settingItem1Switcher = CVSwithcer("temp")
-    private lazy var settingItem2Switcher = CVSwithcer("wind")
-    private lazy var settingItem3Switcher = CVSwithcer("time")
-    private lazy var settingItem4Switcher = CVSwithcer("notif")
+    lazy var settingItem0Switcher = CVSwithcer("temp")
+    lazy var settingItem1Switcher = CVSwithcer("wind")
+    lazy var settingItem2Switcher = CVSwithcer("time")
+    lazy var settingItem3Switcher = CVSwithcer("notif")
     
     lazy var button = CVButton(
         title: settingsButtonLabel,
@@ -44,12 +44,13 @@ class SettingView : UIView {
         setViews()
         setConstraints()
         cloudAnimation()
-        
+
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     
     func cloudAnimation(){
         UIView.animate(withDuration: 5, delay: 0) {
@@ -71,15 +72,15 @@ class SettingView : UIView {
         self.addSubview(wrapperView)
         wrapperView.addSubview(settingTitle)
         wrapperView.addSubview(settingItemStack)
+        settingItemStack.addArrangedSubview(settingItem0Label)
         settingItemStack.addArrangedSubview(settingItem1Label)
         settingItemStack.addArrangedSubview(settingItem2Label)
         settingItemStack.addArrangedSubview(settingItem3Label)
-        settingItemStack.addArrangedSubview(settingItem4Label)
         wrapperView.addSubview(settingItemStack2)
+        settingItemStack2.addArrangedSubview(settingItem0Switcher)
         settingItemStack2.addArrangedSubview(settingItem1Switcher)
         settingItemStack2.addArrangedSubview(settingItem2Switcher)
         settingItemStack2.addArrangedSubview(settingItem3Switcher)
-        settingItemStack2.addArrangedSubview(settingItem4Switcher)
         self.addSubview(button)
     }
     

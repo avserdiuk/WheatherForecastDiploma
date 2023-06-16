@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4107EF7B29C8D87A009C24C1 /* CustomUIViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4107EF7A29C8D87A009C24C1 /* CustomUIViews.swift */; };
 		41336B4E29D6035600F35CDC /* GeoDecoderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41336B4D29D6035600F35CDC /* GeoDecoderModel.swift */; };
+		4138584E2A3B131800A8AEAC /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138584D2A3B131800A8AEAC /* UserSettings.swift */; };
 		414B535129CCBE2900266E69 /* ForecastTable24hHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414B535029CCBE2900266E69 /* ForecastTable24hHeader.swift */; };
 		414B535329CCBF5700266E69 /* ForecastTable24hViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414B535229CCBF5700266E69 /* ForecastTable24hViewCell.swift */; };
 		414B535529CDC02B00266E69 /* DailyWheatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414B535429CDC02B00266E69 /* DailyWheatherViewController.swift */; };
@@ -85,6 +86,7 @@
 /* Begin PBXFileReference section */
 		4107EF7A29C8D87A009C24C1 /* CustomUIViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIViews.swift; sourceTree = "<group>"; };
 		41336B4D29D6035600F35CDC /* GeoDecoderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDecoderModel.swift; sourceTree = "<group>"; };
+		4138584D2A3B131800A8AEAC /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		414B535029CCBE2900266E69 /* ForecastTable24hHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTable24hHeader.swift; sourceTree = "<group>"; };
 		414B535229CCBF5700266E69 /* ForecastTable24hViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTable24hViewCell.swift; sourceTree = "<group>"; };
 		414B535429CDC02B00266E69 /* DailyWheatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWheatherViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			children = (
 				414B537529D3328300266E69 /* WheatherModel.swift */,
 				41336B4D29D6035600F35CDC /* GeoDecoderModel.swift */,
+				4138584D2A3B131800A8AEAC /* UserSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				41A72F952A39D15F002B80B5 /* Forecast24View.swift in Sources */,
 				41995DB929DD8E040036AA7B /* WheatherViewController.swift in Sources */,
 				414B535329CCBF5700266E69 /* ForecastTable24hViewCell.swift in Sources */,
+				4138584E2A3B131800A8AEAC /* UserSettings.swift in Sources */,
 				41A72F8D2A38B1FB002B80B5 /* PermissionView.swift in Sources */,
 				4171258029C8639000CCE6D4 /* Colors.swift in Sources */,
 				414B535529CDC02B00266E69 /* DailyWheatherViewController.swift in Sources */,
