@@ -12,7 +12,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var rootController: UIViewController?
     let param = UserDefaults.standard.bool(forKey: "isFirstOpenApp") // default = false
-    var userSettings: Settings?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -25,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // если произошел первый запуск приложения, то:
 
             UserDefaults.standard.set(true, forKey: "isFirstOpenApp")
-            UserDefaults.standard.set([true, false, false, true], forKey: "settings") // default settings
+            UserDefaults.standard.set([true, false, false, false], forKey: "settings") // default settings
 
             rootController = PermissionViewController()
         } else {
