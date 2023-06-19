@@ -62,6 +62,7 @@ class PageViewController: UIViewController {
                 NetworkManager().getWheater(coordinates: coords) { wheather in
                     DispatchQueue.main.async {
                         self.wheathers.append(wheather)
+                        print(wheather.fact.temp)
                         myGroup.leave()
                     }
                 }
