@@ -71,10 +71,6 @@ class NetworkManager {
 
         let task = urlSession.dataTask(with: request) { data, response, error in
 
-            print(data)
-            print(response)
-            print(error)
-
             guard let data else { return }
 
             do {
