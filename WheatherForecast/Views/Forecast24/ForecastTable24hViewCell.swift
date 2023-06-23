@@ -48,22 +48,31 @@ class ForecastTable24hViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(_ wheather : Wheather, _ indexPath: IndexPath, _ indexMassive: [Int]){
+
+    func setup(_ location : Locations, _ indexPath: IndexPath, _ indexMassive: [Int]){
+
+        var forecast = location.forecast?.allObjects as! [WheatherForecast]
+        forecast.sort{ $0.date! < $1.date! }
 
         let currentHour = getCurrentHourAt3h()
-        var forecastIndex = 0
+        var index = 0
+        var forecastIndex = forecast[0].forecastHours?.allObjects as! [ForecastHours]
+        forecastIndex.sort { $0.hour < $1.hour }
 
         if currentHour > indexMassive[indexPath.item] {
-            forecastIndex = 1
+            index = 1
+            forecastIndex = forecast[1].forecastHours?.allObjects as! [ForecastHours]
+            forecastIndex.sort { $0.hour < $1.hour }
         }
 
-        let item = wheather.forecasts[forecastIndex].hours[indexMassive[indexPath.item]]
 
-        dateLabel.text = getTime(unixtime: wheather.forecasts[forecastIndex].unixtime)
+        let item = forecastIndex[indexMassive[indexPath.item]]
+
+        dateLabel.text = getTime(unixtime: Int(forecast[index].unixtime))
         timeLabel.text = "\(indexMassive[indexPath.item]):00"
         degreeLabel.text = "\(item.temp)"
-        add1Label.text = "\(getCondition(item.condition)), по ощущению \(item.feelsLike)"
-        add22Label.text = "\(item.windSpeed) м/с \(getWindDir(item.windDir))"
+        add1Label.text = "\(getCondition(item.condition!)), по ощущению \(item.feelsLike)"
+        add22Label.text = "\(item.windSpeed) м/с \(getWindDir(item.windDir!))"
         add33Label.text = "\(Int(item.precipitation*100))%"
         add44Label.text = "\(Int(item.cloudness*100))%"
     }

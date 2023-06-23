@@ -32,9 +32,12 @@ class DailyWheatherCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(_ whather: Wheather, _ indexPath: IndexPath){
-        let date = whather.forecasts[indexPath.row].unixtime
-        titleLabel.text = getTime(unixtime: date)
+    func setup(_ location: Locations, _ indexPath: IndexPath){
+
+        var forecast = location.forecast?.allObjects as! [WheatherForecast]
+        forecast.sort {$0.date! < $1.date!}
+        let date = forecast[indexPath.row].unixtime
+        titleLabel.text = getTime(unixtime: Int(date))
     }
 
     func getTime(unixtime : Int) -> String {

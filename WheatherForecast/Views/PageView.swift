@@ -36,7 +36,6 @@ class PageView : UIView {
 
     lazy var informationLabel = CVLabel(text: pageDescription, size: 16, weight: .semibold, color: Colors.textGray, numberOfLines: 0, textAlignment: .center, isHidden: true)
 
-
     override init(frame: CGRect) {
         super.init(frame: .zero)
 

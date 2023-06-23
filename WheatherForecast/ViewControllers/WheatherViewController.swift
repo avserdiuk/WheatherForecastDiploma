@@ -1,5 +1,5 @@
 //
-//  WheatherViewController.swift
+//  CoreDataWheatherViewController.swift
 //  WheatherForecast
 //
 //  Created by Алексей Сердюк on 05.04.2023.
@@ -10,7 +10,7 @@ import UIKit
 class WheatherViewController: UIViewController {
 
     weak var viewController : UIViewController?
-    var wheather : Wheather?
+    var location : Locations?
     var titleLabel: String?
 
     private lazy var tableView : UITableView = {
@@ -30,15 +30,12 @@ class WheatherViewController: UIViewController {
 
         view.addSubview(tableView)
         setConstraints()
-
     }
 
-
-    init(wheather: Wheather, viewController : UIViewController, titleLabel: String) {
+    init(location: Locations, viewController : UIViewController) {
         super.init(nibName: nil, bundle: nil)
-        self.wheather = wheather
+        self.location = location
         self.viewController = viewController
-        self.titleLabel = titleLabel
     }
 
     required init?(coder: NSCoder) {
@@ -69,8 +66,8 @@ extension WheatherViewController : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = WheatherTableViewCell()
-        if let wheather = wheather {
-            cell.setup(wheather, indexPath)
+        if let location = location {
+            cell.setup(location, indexPath)
         }
         cell.selectionStyle = .none
         return cell
@@ -82,10 +79,12 @@ extension WheatherViewController : UITableViewDelegate {
         guard section == 1 else {
             let cell = WheatherTableHeader()
             cell.viewController = self.viewController
-            if let wheather = wheather {
-                cell.wheather = wheather
+            if let location = location {
+                cell.location = location
                 cell.titleLabel = titleLabel
-                cell.setup(wheather)
+                cell.setup(location)
+            } else {
+                print("error")
             }
             return cell
         }
@@ -94,7 +93,7 @@ extension WheatherViewController : UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = DailyWheatherViewController()
-        controller.wheather = wheather
+        controller.location = location
         controller.index = indexPath.row
         controller.view().titleLabel.text = titleLabel
         viewController?.navigationController?.pushViewController(controller, animated: true)

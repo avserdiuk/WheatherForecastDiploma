@@ -1,18 +1,19 @@
 //
-//  CustomTableHeader.swift
+//  CoreDataWheatherTableHeader.swift
 //  WheatherForecast
 //
-//  Created by Алексей Сердюк on 21.03.2023.
+//  Created by Алексей Сердюк on 22.06.2023.
 //
+
 
 import UIKit
 
 class WheatherTableHeader: UITableViewHeaderFooterView {
 
     weak var viewController : UIViewController?
-    var wheather : Wheather?
     var titleLabel : String?
     var indexMass : [Int] = []
+    var location: Locations?
 
     private lazy var wrapper = CVView()
 
@@ -101,22 +102,27 @@ class WheatherTableHeader: UITableViewHeaderFooterView {
         }
     }
 
-    func setup(_ wheather : Wheather){
-        self.sunRiseLabel.text = "\(wheather.forecasts[0].sunrise)"
-        self.sunSetLabel.text = "\(wheather.forecasts[0].sunset)"
-        self.nowTempLabel.text = "\(wheather.fact.temp)°"
-        self.nowDescLabel.text = getCondition(wheather.fact.condition)
-        self.sunViewLabel.text = "\(Int(wheather.fact.cloudness*100))%"
-        self.windViewLabel.text = "\(wheather.fact.windSpeed) м/с"
-        self.rainViewLabel.text = "\(Int(wheather.fact.humidity))%"
+    func setup(_ location : Locations){
+
+        let forecast = location.forecast?.allObjects as! [WheatherForecast]
+        var parts = forecast[0].forecastPart?.allObjects as! [ForecastPart]
+        parts.sort{ $0.name! < $1.name! }
+
+        self.sunRiseLabel.text = "\(forecast[0].sunrise ?? "")"
+        self.sunSetLabel.text = "\(forecast[0].sunset ?? "")"
+        self.nowTempLabel.text = "\(location.fact?.temp ?? 99)"
+        self.nowDescLabel.text = getCondition(location.fact?.condition ?? "")
+        self.sunViewLabel.text = "\(Int((location.fact?.cloudness ?? 0.0)*100))%"
+        self.windViewLabel.text = "\(location.fact?.windSpeed ?? 99) м/с"
+        self.rainViewLabel.text = "\(Int(location.fact?.humidity ?? 99))%"
         self.dataTimeLabel.text = "\(self.getCurrentTime())"
-        self.dayNightTempLabel.text = "\(wheather.forecasts[0].parts.night.tempMin)°/\(wheather.forecasts[0].parts.day.tempMax)°"
+        self.dayNightTempLabel.text = "\(parts[1].tempMin)°/\(parts[0].tempMax)°"
     }
 
     @objc func didTap(){
         let controller = Forecast24ViewController()
         controller.viewController = viewController
-        controller.wheather = wheather
+        controller.location = location
         controller.view().titleLabel.text = titleLabel
         viewController?.navigationController?.pushViewController(controller, animated: true)
     }
@@ -253,7 +259,7 @@ extension WheatherTableHeader : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 24
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! WheatherCollectionViewCell
 
@@ -267,8 +273,8 @@ extension WheatherTableHeader : UICollectionViewDataSource {
             label2?.textColor = UIColor.white
         }
 
-        if let wheather = wheather {
-            cell.setup(wheather, indexMass[indexPath.item])
+        if let location = location {
+            cell.setup(location, indexMass[indexPath.item])
         }
 
         return cell

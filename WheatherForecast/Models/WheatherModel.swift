@@ -31,8 +31,8 @@ struct Fact : Codable {
 struct Forecast: Codable {
     let date : String
     let unixtime : Int
-    let sunrise : String
-    let sunset : String
+    let sunrise : String?
+    let sunset : String?
     let parts: Parts
     let hours : [Hours]
 

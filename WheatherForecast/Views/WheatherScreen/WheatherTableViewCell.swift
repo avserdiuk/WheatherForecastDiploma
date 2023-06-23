@@ -38,12 +38,18 @@ class WheatherTableViewCell: UITableViewCell {
         degreeLabel.text = nil
     }
 
-    func setup(_ wheather: Wheather, _ indexPath : IndexPath){
-        dateLabel.text = getTime(unixtime: wheather.forecasts[indexPath.row].unixtime)
-        titleLabel.text = getCondition(wheather.forecasts[indexPath.row].parts.day.condition)
-        degreeLabel.text = "\(wheather.forecasts[indexPath.row].parts.night.tempMin)°/\(wheather.forecasts[indexPath.row].parts.day.tempMax)°"
-        rainLabel.text =  "\(Int(wheather.forecasts[indexPath.row].parts.day.precipitation*100))%"
-        rainImage.image = UIImage(named: "\(wheather.forecasts[indexPath.row].parts.day.condition)")
+    func setup(_ location: Locations, _ indexPath : IndexPath){
+
+        var forecast = location.forecast?.allObjects as! [WheatherForecast]
+        forecast.sort {$0.date! < $1.date!}
+        var parts = forecast[indexPath.row].forecastPart?.allObjects as! [ForecastPart]
+        parts.sort{ $0.name! < $1.name! }
+
+        dateLabel.text = getTime(unixtime: Int(forecast[indexPath.row].unixtime))
+        titleLabel.text = getCondition(parts[0].condition ?? "")
+        degreeLabel.text = "\(parts[1].tempMin)°/\(parts[0].tempMax)°"
+        rainLabel.text =  "\(Int(parts[0].precipitation*100))%"
+        rainImage.image = UIImage(named: "\(parts[0].condition ?? "")")
     }
 
     func getTime(unixtime : Int) -> String {

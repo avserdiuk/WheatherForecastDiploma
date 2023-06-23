@@ -12,7 +12,6 @@ class SettingViewController: UIViewController {
     var settings = UserDefaults.standard.array(forKey: "settings") ?? [] // берем актуальные настроки
     var switchers: [CVSwithcer] = [] // массив для работы с переключатели
 
-
     override func loadView() {
         self.view = SettingView()
     }

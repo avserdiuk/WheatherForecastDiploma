@@ -10,13 +10,12 @@ import CoreLocation
 
 class PageViewController: UIViewController {
 
-    var locations : [String] = UserDefaults.standard.object(forKey: "Locations") as? [String] ?? []
-    var wheathers : [Wheather] = []
+    var locations = CoreDataManager.shared.locations
 
     lazy var controllers : [UIViewController] = {
         var controllers : [UIViewController] = []
-        self.wheathers.enumerated().forEach {
-            self.controllers.append(WheatherViewController(wheather: $1, viewController: self, titleLabel: self.locations[$0]))
+        self.locations.enumerated().forEach {
+            self.controllers.append(WheatherViewController(location: $1, viewController: self))
         }
         return controllers
     }()
@@ -53,39 +52,21 @@ class PageViewController: UIViewController {
     func showWheather(){
         view().activityIndicator.startAnimating()
 
-        let myGroup = DispatchGroup()
+        self.view().pageControl.isHidden = false
+        self.view().activityIndicator.stopAnimating()
 
-        wheathers = []
-        locations.forEach {
-            myGroup.enter()
-            NetworkManager().getCoordsWithString($0) { desc, coords in
-                NetworkManager().getWheater(coordinates: coords) { wheather in
-                    DispatchQueue.main.async {
-                        self.wheathers.append(wheather)
-                        print(wheather.fact.temp)
-                        myGroup.leave()
-                    }
-                }
-            }
+        self.controllers = []
+        self.locations.enumerated().forEach {
+            self.controllers.append(WheatherViewController(location: $1, viewController: self))
         }
 
-        myGroup.notify(queue: .main) {
-            self.view().pageControl.isHidden = false
-            self.view().activityIndicator.stopAnimating()
+        self.view().pageViewController.setViewControllers([self.controllers[self.controllers.count-1]], direction: .forward, animated: true)
 
-            self.controllers = []
-            self.wheathers.enumerated().forEach {
-                self.controllers.append(WheatherViewController(wheather: $1, viewController: self, titleLabel: self.locations[$0]))
-            }
+        self.title = self.locations[self.controllers.count-1].name
 
-            self.view().pageViewController.setViewControllers([self.controllers[self.controllers.count-1]], direction: .forward, animated: true)
+        self.view().pageControl.numberOfPages = self.locations.count
+        self.view().pageControl.currentPage = self.locations.count
 
-            self.title = self.locations[self.controllers.count-1]
-
-            self.view().pageControl.numberOfPages = self.locations.count
-            self.view().pageControl.currentPage = self.locations.count
-            
-        }
     }
 
     func setNavigationBar(){
@@ -116,14 +97,18 @@ class PageViewController: UIViewController {
             let textField = alert?.textFields![0]
             guard let city = textField?.text else { return }
 
-            NetworkManager().getCoordsWithString(city) { desc, coords in
-                self.locations.append(desc)
-                UserDefaults.standard.set(self.locations, forKey: "Locations")
 
-                DispatchQueue.main.async {
-                    self.view().informationLabel.isHidden = true
-                    self.view().wrapperView.isHidden = true
-                    self.viewDidLoad()
+
+            NetworkManager().getCoordsWithString(city) { desc, coords in
+                NetworkManager().getWheater(coordinates: coords) { wheather in
+                    CoreDataManager.shared.addLocation(name: desc, longitude: Float(coords.1), latitude: Float(coords.0), wheather: wheather) {
+
+                        DispatchQueue.main.async {
+                            self.locations = CoreDataManager.shared.locations
+                            self.viewDidLoad()
+                            self.view().wrapperView.isHidden = true
+                        }
+                    }
                 }
             }
 
@@ -163,7 +148,7 @@ extension PageViewController : UIPageViewControllerDataSource, UIPageViewControl
 
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         if let index = controllers.firstIndex(of: pendingViewControllers[0]){
-            self.title = locations[index]
+            self.title = locations[index].name
             self.view().pageControl.currentPage = index
 
         }

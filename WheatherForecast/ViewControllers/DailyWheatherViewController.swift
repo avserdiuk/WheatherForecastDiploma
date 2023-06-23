@@ -9,7 +9,7 @@ import UIKit
 
 class DailyWheatherViewController: UIViewController {
 
-    var wheather : Wheather?
+    var location : Locations?
     var index : Int = 0
 
     override func loadView() {
@@ -38,22 +38,28 @@ class DailyWheatherViewController: UIViewController {
 extension DailyWheatherViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         4
+
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let wheather else { return UITableViewCell() }
-        
+        guard let location else { return UITableViewCell() }
+
+        var forecast = location.forecast?.allObjects as! [WheatherForecast]
+        forecast.sort {$0.date! < $1.date!}
+        var parts = forecast[index].forecastPart?.allObjects as! [ForecastPart]
+        parts.sort{ $0.name! < $1.name! }
+
         if indexPath.row == 0 {
             let cell = DailyWheatherTableViewCell()
-            cell.setup("День", wheather.forecasts[index].parts.day, indexPath)
+            cell.setup("День", parts[0], indexPath)
             return cell
         } else if indexPath.row == 1 {
             let cell = DailyWheatherTableViewCell()
-            cell.setup("Ночь", wheather.forecasts[index].parts.night, indexPath)
+            cell.setup("Ночь", parts[1], indexPath)
             return cell
         } else if indexPath.row == 2 {
             let cell = DailyWheatherDayNightTableViewCell()
-            cell.setup(wheather.forecasts[index])
+            cell.setup(forecast[index])
             return cell
         } else {
             return DailyWheatherAirQualityTableViewCell()
@@ -64,7 +70,7 @@ extension DailyWheatherViewController : UITableViewDataSource {
 extension DailyWheatherViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = DailyWheatherTableHeader()
-        header.wheather = wheather
+        header.location = location
         header.index = index
         header.delegate = self
         return header

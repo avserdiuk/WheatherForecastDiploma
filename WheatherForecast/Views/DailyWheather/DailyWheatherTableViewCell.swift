@@ -9,7 +9,7 @@ import UIKit
 
 class DailyWheatherTableViewCell: UITableViewCell {
 
-    var wheather : Wheather?
+    var location: Locations?
 
     private lazy var wrapperView = CVView(backgroundColor: .backgroundWhite, cornerRadius: 5)
     private lazy var titleLabel = CVLabel(text: dailyWheatherTitleLabel, size: 18, weight: .regular)
@@ -50,15 +50,16 @@ class DailyWheatherTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(_ timeOfDay: String, _ wheather : Day, _ indexPath: IndexPath){
+    func setup(_ timeOfDay: String, _ location : ForecastPart, _ indexPath: IndexPath){
+
         titleLabel.text = timeOfDay
-        dergeeLable.text = "\(wheather.tempAvg)°"
-        wheatherLable.text = "\(getCondition(wheather.condition))"
-        row11Label.text = "\(wheather.tempFeelLike)°"
-        row12Label.text = "\(wheather.windSpeed) м/с \(getWindDir(wheather.windDir))"
-        row13Label.text = "\(getUvIndex(wheather.uvIndex ?? 0))"
-        row14Label.text = "\(Int(wheather.precipitation)*100)%"
-        row15Label.text = "\(Int(wheather.cloudness)*100)%"
+        dergeeLable.text = "\(location.tempAvg)°"
+        wheatherLable.text = "\(getCondition(location.condition!))"
+        row11Label.text = "\(location.tempFeelLike)°"
+        row12Label.text = "\(location.windSpeed) м/с \(getWindDir(location.windDir!))"
+        row13Label.text = "\(getUvIndex(Int(location.uvIndex)))"
+        row14Label.text = "\(Int(location.precipitation)*100)%"
+        row15Label.text = "\(Int(location.cloudness)*100)%"
     }
 
     func setViews(){

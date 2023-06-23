@@ -10,7 +10,7 @@ import UIKit
 class DailyWheatherTableHeader: UITableViewHeaderFooterView {
 
     weak var delegate: DailyWheatherViewController!
-    var wheather : Wheather?
+    var location: Locations?
     var index : Int?
 
     private lazy var collectionViewFloyLayout : UICollectionViewFlowLayout = {
@@ -62,14 +62,15 @@ class DailyWheatherTableHeader: UITableViewHeaderFooterView {
 
 extension DailyWheatherTableHeader : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        wheather?.forecasts.count ?? 0
+        let forecast = location!.forecast?.allObjects as! [WheatherForecast]
+        return forecast.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let wheather else { return UICollectionViewCell()}
+        guard let location else { return UICollectionViewCell()}
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! DailyWheatherCollectionViewCell
-        cell.setup(wheather, indexPath)
+        cell.setup(location, indexPath)
 
         if indexPath.row == index {
             cell.layer.backgroundColor = Colors.accentBlue.color.cgColor

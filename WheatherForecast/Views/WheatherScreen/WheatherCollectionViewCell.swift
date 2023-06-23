@@ -1,8 +1,8 @@
 //
-//  CustomCollectionViewCell.swift
+//  CoreDataWheatherCollectionViewCell.swift
 //  WheatherForecast
 //
-//  Created by Алексей Сердюк on 21.03.2023.
+//  Created by Алексей Сердюк on 23.06.2023.
 //
 
 import UIKit
@@ -42,18 +42,25 @@ class WheatherCollectionViewCell: UICollectionViewCell {
         label1?.textColor = UIColor.black
     }
 
-    func setup(_ wheater: Wheather, _ index: Int) {
+    func setup(_ location: Locations, _ index: Int) {
+
+        var forecast = location.forecast?.allObjects as! [WheatherForecast]
+        forecast.sort{ $0.date! < $1.date! }
+        var currentDay = forecast[0].forecastHours?.allObjects as! [ForecastHours]
+        currentDay.sort { $0.hour < $1.hour }
+        var nextDay = forecast[1].forecastHours?.allObjects as! [ForecastHours]
+        nextDay.sort { $0.hour < $1.hour }
 
         let currentHour = getCurrentHour()
-        
+
         if index >= currentHour {
-            timeLabel.text = "\(wheater.forecasts[0].hours[index].hour):00"
-            imageView.image = UIImage(named: "\(wheater.forecasts[0].hours[index].condition)")
-            degreeLabel.text = "\(wheater.forecasts[0].hours[index].temp)°"
+            timeLabel.text = "\(currentDay[index].hour):00"
+            imageView.image = UIImage(named: "\(currentDay[index].condition ?? "")")
+            degreeLabel.text = "\(currentDay[index].temp)°"
         } else {
-            timeLabel.text = "\(wheater.forecasts[1].hours[index].hour):00"
-            imageView.image = UIImage(named: "\(wheater.forecasts[1].hours[index].condition)")
-            degreeLabel.text = "\(wheater.forecasts[1].hours[index].temp)°"
+            timeLabel.text = "\(nextDay[index].hour):00"
+            imageView.image = UIImage(named: "\(nextDay[index].condition ?? "")")
+            degreeLabel.text = "\(nextDay[index].temp)°"
         }
 
     }

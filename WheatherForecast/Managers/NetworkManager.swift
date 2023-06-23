@@ -24,7 +24,7 @@ class NetworkManager {
 
                 complition(description)
             } catch {
-                print(error)
+                print(#function, error)
             }
             
         }
@@ -47,14 +47,14 @@ class NetworkManager {
 
                     let response = result.response.geoObjectCollection.featureMember.first?.geoObject.point!.pos
                     if let answer = response?.components(separatedBy: " ") {
-                        let lat = Double(answer[0])!
-                        let lon = Double(answer[1])!
+                        let lat = Double(answer[1])!
+                        let lon = Double(answer[0])!
                         let coords = (lat, lon)
                         complition(description, coords)
                     }
 
                 } catch {
-                    print(error)
+                    print(#function, error)
                 }
             }
 
@@ -64,20 +64,25 @@ class NetworkManager {
 
     func getWheater(coordinates: (lat: Double,lon: Double), complition: @escaping (_ forecast : Wheather) -> ()) {
 
-        guard let url = URL(string: "https://api.weather.yandex.ru/v2/forecast?lat=\(coordinates.lon)&lon=\(coordinates.lat)&hours=true") else { return }
+        guard let url = URL(string: "https://api.weather.yandex.ru/v2/forecast?lat=\(coordinates.lat)&lon=\(coordinates.lon)&hours=true") else { return }
 
         var request = URLRequest(url: url)
         request.addValue("6665563f-9e68-42d2-90c0-5976f1f3d85b", forHTTPHeaderField: "X-Yandex-API-Key")
 
         let task = urlSession.dataTask(with: request) { data, response, error in
 
+            print(data)
+            print(response)
+            print(error)
+
             guard let data else { return }
 
             do {
                 let result = try JSONDecoder().decode(Wheather.self, from: data)
+                print(result)
                 complition(result)
             } catch {
-                print(error)
+                print(#function, error)
             }
 
         }

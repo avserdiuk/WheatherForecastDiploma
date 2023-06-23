@@ -49,7 +49,7 @@ class DailyWheatherDayNightTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(_ wheather: Forecast){
+    func setup(_ wheather: WheatherForecast){
         leftItem11Label.text = wheather.sunrise
         leftItem12Label.text = wheather.sunset
 

@@ -62,10 +62,14 @@ extension PermissionViewController : CLLocationManagerDelegate {
             let lon = location.coordinate.longitude
             let lat = location.coordinate.latitude
 
-            NetworkManager().getDescriptionWithCoords((lat,lon)) { desc in
-                DispatchQueue.main.async {
-                    UserDefaults.standard.set([desc], forKey: "Locations")
-                    self.navigationController?.pushViewController(PageViewController(), animated: true)
+            NetworkManager().getDescriptionWithCoords((lat,lon)) { locationName in
+
+                NetworkManager().getWheater(coordinates: (lat, lon)) { wheather in
+                    CoreDataManager.shared.addLocation(name: locationName, longitude: Float(lon), latitude: Float(lat), wheather: wheather) {
+                        DispatchQueue.main.async {
+                            self.navigationController?.pushViewController(PageViewController(), animated: true)
+                        }
+                    }
                 }
             }
         } else {

@@ -10,8 +10,8 @@ import UIKit
 class Forecast24ViewController: UIViewController {
 
     weak var viewController : UIViewController?
-    var wheather : Wheather?
     var indexMassive : [Int] = []
+    var location : Locations?
 
     override func loadView() {
         self.view = Forecast24View()
@@ -57,14 +57,22 @@ class Forecast24ViewController: UIViewController {
 
 extension Forecast24ViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let wheather else { return 0 }
-        return wheather.forecasts[0].hours.count/3
+
+        guard let location else { return 0 }
+
+        var forecast = location.forecast?.allObjects as! [WheatherForecast]
+        forecast.sort{ $0.date! < $1.date! }
+        var currentDay = forecast[0].forecastHours?.allObjects as! [ForecastHours]
+        currentDay.sort { $0.hour < $1.hour }
+
+        return currentDay.count/3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ForecastTable24hViewCell()
-        if let wheather = wheather {
-            cell.setup(wheather, indexPath, indexMassive)
+
+        if let location = location {
+            cell.setup(location, indexPath, indexMassive)
         }
         return cell
     }
