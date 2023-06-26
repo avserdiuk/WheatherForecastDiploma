@@ -120,10 +120,40 @@ extension Int32 {
         let status = settings[0] as? Bool
 
         if status == false {
-            var new = Double(self)*1.8 + 32.0
+            let new = Double(self)*1.8 + 32.0
             return Int32(new)
         } else {
             return self
         }
+    }
+}
+
+extension Double {
+    mutating func SСomputed() -> Double{
+        let settings = UserDefaults.standard.array(forKey: "settings") ?? [] // берем актуальные настроки
+        let status = settings[1] as? Bool
+
+        if status == true {
+            let new = self*2.796
+            return new.roundToDecimal(2)
+        } else {
+            return self
+        }
+    }
+
+    func roundToDecimal(_ fractionDigits: Int) -> Double {
+            let multiplier = pow(10, Double(fractionDigits))
+            return Darwin.round(self * multiplier) / multiplier
+        }
+}
+
+func getCurrentWindSpeed() -> String {
+    let settings = UserDefaults.standard.array(forKey: "settings") ?? [] // берем актуальные настроки
+    let status = settings[1] as? Bool
+
+    if status == true {
+        return "ми/ч"
+    } else {
+        return "м/с"
     }
 }
