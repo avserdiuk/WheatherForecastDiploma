@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4107EF7B29C8D87A009C24C1 /* CustomUIViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4107EF7A29C8D87A009C24C1 /* CustomUIViews.swift */; };
+		4107EF7B29C8D87A009C24C1 /* CustomUIViews & Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4107EF7A29C8D87A009C24C1 /* CustomUIViews & Extensions.swift */; };
 		41336B4E29D6035600F35CDC /* GeoDecoderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41336B4D29D6035600F35CDC /* GeoDecoderModel.swift */; };
 		4138584E2A3B131800A8AEAC /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138584D2A3B131800A8AEAC /* UserSettings.swift */; };
 		414B535129CCBE2900266E69 /* ForecastTable24hHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414B535029CCBE2900266E69 /* ForecastTable24hHeader.swift */; };
@@ -86,7 +86,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4107EF7A29C8D87A009C24C1 /* CustomUIViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIViews.swift; sourceTree = "<group>"; };
+		4107EF7A29C8D87A009C24C1 /* CustomUIViews & Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomUIViews & Extensions.swift"; sourceTree = "<group>"; };
 		41336B4D29D6035600F35CDC /* GeoDecoderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDecoderModel.swift; sourceTree = "<group>"; };
 		4138584D2A3B131800A8AEAC /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		414B535029CCBE2900266E69 /* ForecastTable24hHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTable24hHeader.swift; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 				4171258129C868A600CCE6D4 /* Models */,
 				4147C96329DB0E5B00C25279 /* Managers */,
 				4107EF7C29C8DB42009C24C1 /* Views */,
-				4107EF7A29C8D87A009C24C1 /* CustomUIViews.swift */,
+				4107EF7A29C8D87A009C24C1 /* CustomUIViews & Extensions.swift */,
 				414B536229CEFB8B00266E69 /* Fonts */,
 				4171257F29C8639000CCE6D4 /* Colors.swift */,
 				4171258229C868BC00CCE6D4 /* Texts.swift */,
@@ -444,7 +444,7 @@
 				414B536A29CEFD5A00266E69 /* Fonts.swift in Sources */,
 				414B535F29CE223700266E69 /* DailyWheatherDayNightTableViewCell.swift in Sources */,
 				41D9556429C9FF530000CFAB /* WheatherTableViewCell.swift in Sources */,
-				4107EF7B29C8D87A009C24C1 /* CustomUIViews.swift in Sources */,
+				4107EF7B29C8D87A009C24C1 /* CustomUIViews & Extensions.swift in Sources */,
 				41336B4E29D6035600F35CDC /* GeoDecoderModel.swift in Sources */,
 				41556BC12A44BFD000FBE0B7 /* WheatherTableHeader.swift in Sources */,
 				41E8171A29CB8804003665CD /* Forecast24ViewController.swift in Sources */,

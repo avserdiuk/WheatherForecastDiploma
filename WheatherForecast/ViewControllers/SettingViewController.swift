@@ -71,12 +71,22 @@ class SettingViewController: UIViewController {
         // если пользователь включил уведомления в настройках
         let status = settings[3] as? Bool
         if let status {
+
+            let location = CoreDataManager.shared.locations.last
+            let name = location?.name?.split(separator: ",")
+            let shortName = name?[0] ?? ""
+
+            var forecast = location?.forecast?.allObjects as! [WheatherForecast]
+            forecast.sort {$0.date! < $1.date!}
+            var parts = forecast[0].forecastPart?.allObjects as! [ForecastPart]
+            parts.sort{ $0.name! < $1.name! }
+
             let center = UNUserNotificationCenter.current()
             if status {
                 //включаем отправку уведомления
                 let content = UNMutableNotificationContent()
-                content.title = "Краткий прогноз на сегодня"
-                content.body = "Днем обещается кратковременный дождь и +15 градусов тепла"
+                content.title = "\(shortName): краткий прогноз"
+                content.body = "\(getCondition(parts[0].condition!)) сегодня и \(parts[0].tempAvg) градусов \(getInfo(temp: parts[0].tempAvg))"
                 content.sound = .default
 
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
@@ -88,6 +98,14 @@ class SettingViewController: UIViewController {
                 // отключаем отправку уведомления
                 center.removeAllPendingNotificationRequests()
             }
+        }
+    }
+
+    func getInfo (temp : Int32) -> String{
+        if temp > 1 {
+            return "тепла"
+        } else {
+            return "холода"
         }
     }
     
