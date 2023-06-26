@@ -69,7 +69,7 @@ class ForecastTable24hViewCell: UITableViewCell {
         let item = forecastIndex[indexMassive[indexPath.item]]
 
         dateLabel.text = getTime(unixtime: Int(forecast[index].unixtime))
-        timeLabel.text = "\(indexMassive[indexPath.item]):00"
+        timeLabel.text = getCurrentFormatTime(dateAsString: "\(indexMassive[indexPath.item]):00")
         degreeLabel.text = "\(item.temp.SСomputed())"
         add1Label.text = "\(getCondition(item.condition!)), по ощущению \(item.feelsLike.SСomputed())"
         add22Label.text = "\(item.windSpeed.SСomputed()) \(getCurrentWindSpeed()) \(getWindDir(item.windDir!))"
@@ -132,7 +132,7 @@ class ForecastTable24hViewCell: UITableViewCell {
             timeLabel.heightAnchor.constraint(equalToConstant: 19),
 
             add1StackView.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 33),
-            add1StackView.leftAnchor.constraint(equalTo: wrapperView.leftAnchor, constant: 58),
+            add1StackView.leftAnchor.constraint(equalTo: wrapperView.leftAnchor, constant: 63),
 
             add2StackView.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 33),
             add2StackView.leftAnchor.constraint(equalTo: add1StackView.rightAnchor, constant: 10),

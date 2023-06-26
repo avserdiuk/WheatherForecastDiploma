@@ -53,12 +53,20 @@ class WheatherCollectionViewCell: UICollectionViewCell {
 
         let currentHour = getCurrentHour()
 
+
+        let settings = UserDefaults.standard.array(forKey: "settings") ?? [] // берем актуальные настроки
+        let status = settings[2] as? Bool
+
+        if status == true {
+            timeLabel.font = UIFont(name: "\(Font.regular.rawValue)", size: 10)
+        }
+
         if index >= currentHour {
-            timeLabel.text = "\(currentDay[index].hour):00"
+            timeLabel.text = getCurrentFormatTime(dateAsString: "\(currentDay[index].hour):00")
             imageView.image = UIImage(named: "\(currentDay[index].condition ?? "")")
             degreeLabel.text = "\(currentDay[index].temp.SСomputed())°"
         } else {
-            timeLabel.text = "\(nextDay[index].hour):00"
+            timeLabel.text = getCurrentFormatTime(dateAsString: "\(nextDay[index].hour):00")
             imageView.image = UIImage(named: "\(nextDay[index].condition ?? "")")
             degreeLabel.text = "\(nextDay[index].temp.SСomputed())°"
         }
@@ -66,6 +74,7 @@ class WheatherCollectionViewCell: UICollectionViewCell {
     }
 
     func getCurrentHour() -> Int {
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH"
         let dateInFormat = dateFormatter.string(from: NSDate() as Date)

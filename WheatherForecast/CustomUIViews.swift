@@ -157,3 +157,21 @@ func getCurrentWindSpeed() -> String {
         return "м/с"
     }
 }
+
+func getCurrentFormatTime(dateAsString: String) -> String {
+
+    let settings = UserDefaults.standard.array(forKey: "settings") ?? [] // берем актуальные настроки
+    let status = settings[2] as? Bool
+
+    if status == true {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+
+        let date = dateFormatter.date(from: dateAsString)
+        dateFormatter.dateFormat = "h:mm a"
+        let Date12 = dateFormatter.string(from: date!)
+        return Date12
+    } else {
+        return dateAsString
+    }
+}

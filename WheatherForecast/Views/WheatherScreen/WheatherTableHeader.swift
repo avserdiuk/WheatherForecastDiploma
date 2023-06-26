@@ -108,10 +108,8 @@ class WheatherTableHeader: UITableViewHeaderFooterView {
         var parts = forecast[0].forecastPart?.allObjects as! [ForecastPart]
         parts.sort{ $0.name! < $1.name! }
 
-
-
-        self.sunRiseLabel.text = "\(forecast[0].sunrise ?? "")"
-        self.sunSetLabel.text = "\(forecast[0].sunset ?? "")"
+        self.sunRiseLabel.text = "\(getCurrentFormatTime(dateAsString: forecast[0].sunrise ?? ""))"
+        self.sunSetLabel.text = "\(getCurrentFormatTime(dateAsString: forecast[0].sunset ?? ""))"
         self.nowTempLabel.text = "\(location.fact?.temp.SСomputed() ?? 99)"
         self.nowDescLabel.text = getCondition(location.fact?.condition ?? "")
         self.sunViewLabel.text = "\(Int((location.fact?.cloudness ?? 0.0)*100))%"
@@ -130,13 +128,23 @@ class WheatherTableHeader: UITableViewHeaderFooterView {
     }
 
     func getCurrentTime() -> String {
+
+        let settings = UserDefaults.standard.array(forKey: "settings") ?? [] // берем актуальные настроки
+        let status = settings[2] as? Bool
+
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm, E dd MMMM "
+        if status == false {
+            dateFormatter.dateFormat = "HH:mm, E dd MMMM "
+        } else {
+            dateFormatter.dateFormat = "h:mm a, E dd MMMM "
+        }
+
         let dateInFormat = dateFormatter.string(from: NSDate() as Date)
         return dateInFormat
     }
 
     func getCurrentHour() -> Int {
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH"
         let dateInFormat = dateFormatter.string(from: NSDate() as Date)
