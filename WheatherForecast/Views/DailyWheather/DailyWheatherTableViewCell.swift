@@ -53,9 +53,9 @@ class DailyWheatherTableViewCell: UITableViewCell {
     func setup(_ timeOfDay: String, _ location : ForecastPart, _ indexPath: IndexPath){
 
         titleLabel.text = timeOfDay
-        dergeeLable.text = "\(location.tempAvg)°"
+        dergeeLable.text = "\(location.tempAvg.SСomputed())°"
         wheatherLable.text = "\(getCondition(location.condition!))"
-        row11Label.text = "\(location.tempFeelLike)°"
+        row11Label.text = "\(location.tempFeelLike.SСomputed())°"
         row12Label.text = "\(location.windSpeed) м/с \(getWindDir(location.windDir!))"
         row13Label.text = "\(getUvIndex(Int(location.uvIndex)))"
         row14Label.text = "\(Int(location.precipitation)*100)%"

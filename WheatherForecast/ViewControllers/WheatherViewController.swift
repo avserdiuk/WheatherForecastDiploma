@@ -32,6 +32,10 @@ class WheatherViewController: UIViewController {
         setConstraints()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+
     init(location: Locations, viewController : UIViewController) {
         super.init(nibName: nil, bundle: nil)
         self.location = location

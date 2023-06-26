@@ -119,7 +119,6 @@ class CoreDataManager {
 
         }
 
-
         saveContext()
         reloadLocationList()
         complition()

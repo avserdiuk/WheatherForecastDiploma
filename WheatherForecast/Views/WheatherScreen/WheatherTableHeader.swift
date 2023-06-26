@@ -108,15 +108,17 @@ class WheatherTableHeader: UITableViewHeaderFooterView {
         var parts = forecast[0].forecastPart?.allObjects as! [ForecastPart]
         parts.sort{ $0.name! < $1.name! }
 
+
+
         self.sunRiseLabel.text = "\(forecast[0].sunrise ?? "")"
         self.sunSetLabel.text = "\(forecast[0].sunset ?? "")"
-        self.nowTempLabel.text = "\(location.fact?.temp ?? 99)"
+        self.nowTempLabel.text = "\(location.fact?.temp.SСomputed() ?? 99)"
         self.nowDescLabel.text = getCondition(location.fact?.condition ?? "")
         self.sunViewLabel.text = "\(Int((location.fact?.cloudness ?? 0.0)*100))%"
         self.windViewLabel.text = "\(location.fact?.windSpeed ?? 99) м/с"
         self.rainViewLabel.text = "\(Int(location.fact?.humidity ?? 99))%"
         self.dataTimeLabel.text = "\(self.getCurrentTime())"
-        self.dayNightTempLabel.text = "\(parts[1].tempMin)°/\(parts[0].tempMax)°"
+        self.dayNightTempLabel.text = "\(parts[1].tempMin.SСomputed())°/\(parts[0].tempMax.SСomputed())°"
     }
 
     @objc func didTap(){

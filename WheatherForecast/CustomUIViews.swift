@@ -113,3 +113,17 @@ class CVSwithcer : UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension Int32 {
+    mutating func SСomputed() -> Int32{
+        let settings = UserDefaults.standard.array(forKey: "settings") ?? [] // берем актуальные настроки
+        let status = settings[0] as? Bool
+
+        if status == false {
+            var new = Double(self)*1.8 + 32.0
+            return Int32(new)
+        } else {
+            return self
+        }
+    }
+}

@@ -56,11 +56,11 @@ class WheatherCollectionViewCell: UICollectionViewCell {
         if index >= currentHour {
             timeLabel.text = "\(currentDay[index].hour):00"
             imageView.image = UIImage(named: "\(currentDay[index].condition ?? "")")
-            degreeLabel.text = "\(currentDay[index].temp)°"
+            degreeLabel.text = "\(currentDay[index].temp.SСomputed())°"
         } else {
             timeLabel.text = "\(nextDay[index].hour):00"
             imageView.image = UIImage(named: "\(nextDay[index].condition ?? "")")
-            degreeLabel.text = "\(nextDay[index].temp)°"
+            degreeLabel.text = "\(nextDay[index].temp.SСomputed())°"
         }
 
     }

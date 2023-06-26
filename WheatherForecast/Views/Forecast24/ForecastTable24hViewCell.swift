@@ -70,8 +70,8 @@ class ForecastTable24hViewCell: UITableViewCell {
 
         dateLabel.text = getTime(unixtime: Int(forecast[index].unixtime))
         timeLabel.text = "\(indexMassive[indexPath.item]):00"
-        degreeLabel.text = "\(item.temp)"
-        add1Label.text = "\(getCondition(item.condition!)), по ощущению \(item.feelsLike)"
+        degreeLabel.text = "\(item.temp.SСomputed())"
+        add1Label.text = "\(getCondition(item.condition!)), по ощущению \(item.feelsLike.SСomputed())"
         add22Label.text = "\(item.windSpeed) м/с \(getWindDir(item.windDir!))"
         add33Label.text = "\(Int(item.precipitation*100))%"
         add44Label.text = "\(Int(item.cloudness*100))%"

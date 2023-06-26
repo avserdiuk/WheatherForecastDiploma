@@ -47,7 +47,7 @@ class WheatherTableViewCell: UITableViewCell {
 
         dateLabel.text = getTime(unixtime: Int(forecast[indexPath.row].unixtime))
         titleLabel.text = getCondition(parts[0].condition ?? "")
-        degreeLabel.text = "\(parts[1].tempMin)°/\(parts[0].tempMax)°"
+        degreeLabel.text = "\(parts[1].tempMin.SСomputed())°/\(parts[0].tempMax.SСomputed())°"
         rainLabel.text =  "\(Int(parts[0].precipitation*100))%"
         rainImage.image = UIImage(named: "\(parts[0].condition ?? "")")
     }
