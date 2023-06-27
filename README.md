@@ -22,5 +22,7 @@ The weather forecast app is designed to display current weather conditions and f
   - Yandex GEOcoder API
   - JSON parsing using Codable Protocol
   - UserDefaults
+  - CoreData
+  
   
   
