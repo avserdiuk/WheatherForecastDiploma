@@ -73,8 +73,18 @@ class PageViewController: UIViewController {
 
         let menu = UIBarButtonItem(image: UIImage(named: "menu"), style: .done, target: self, action: #selector(showMenu))
         let point = UIBarButtonItem(image: UIImage(named: "point"), style: .done, target: self, action: #selector(showAlert))
+        let trash = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .done, target: self, action: #selector(showDeleteAlert))
         navigationItem.leftBarButtonItems = [menu]
         navigationItem.rightBarButtonItems = [point]
+
+        if CoreDataManager.shared.locations.count > 3  {
+            navigationItem.rightBarButtonItems = [trash]
+        } else if CoreDataManager.shared.locations.count == 1 {
+            navigationItem.rightBarButtonItems = [point]
+        } else {
+            navigationItem.rightBarButtonItems = [point, trash]
+        }
+
         navigationController?.navigationBar.tintColor = .black
 
     }
@@ -82,6 +92,31 @@ class PageViewController: UIViewController {
     @objc func showMenu(){
         let controller = SettingViewController()
         navigationController?.pushViewController(controller, animated: true)
+    }
+
+    @objc func showDeleteAlert(){
+        view().wrapperView.isHidden = false
+        let city = CoreDataManager.shared.locations[view().pageControl.currentPage].name!
+
+        let alert = UIAlertController(title: "Удалить \(city) из прогноза погоды?", message: "", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { [self] _ in
+
+            CoreDataManager.shared.deleteLocation(location: CoreDataManager.shared.locations[view().pageControl.currentPage]) {
+                DispatchQueue.main.async {
+                    self.locations = CoreDataManager.shared.locations
+                    self.viewDidLoad()
+                    self.view().wrapperView.isHidden = true
+                    print("done")
+                }
+            }
+
+        }))
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { _ in
+            self.view().wrapperView.isHidden = true
+        }))
+
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func showAlert(){

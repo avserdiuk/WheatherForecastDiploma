@@ -141,6 +141,22 @@ class CoreDataManager {
         complition()
     }
 
+    func deleteLocation(location: Locations, complition: @escaping () -> ()){
+        let locationsRequest = Locations.fetchRequest()
+        let predicate = NSPredicate(format: "name == %@", "\(location.name!)")
+        locationsRequest.predicate = predicate
+        do {
+            let locationsFetched = try persistentContainer.viewContext.fetch(locationsRequest)
+            persistentContainer.viewContext.delete(locationsFetched.first!)
+            reloadLocationList()
+            saveContext()
+            complition()
+        } catch {
+            print(#function, error)
+        }
+
+    }
+
 
     func updateLocation(location: Locations, wheather: Wheather,  complition: @escaping () -> ()){
         let predicate = NSPredicate(format: "name == %@", "\(location.name!)")
