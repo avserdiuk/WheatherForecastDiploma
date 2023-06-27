@@ -28,7 +28,6 @@
 		41556BBC2A408D8500FBE0B7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41556BBB2A408D8500FBE0B7 /* CoreDataManager.swift */; };
 		41556BC12A44BFD000FBE0B7 /* WheatherTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41556BC02A44BFD000FBE0B7 /* WheatherTableHeader.swift */; };
 		41556BC32A45874C00FBE0B7 /* WheatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41556BC22A45874C00FBE0B7 /* WheatherCollectionViewCell.swift */; };
-		41556BC52A4B0BF000FBE0B7 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41556BC42A4B0BF000FBE0B7 /* LocationModel.swift */; };
 		4171256629C8503200CCE6D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171256529C8503200CCE6D4 /* AppDelegate.swift */; };
 		4171256829C8503200CCE6D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171256729C8503200CCE6D4 /* SceneDelegate.swift */; };
 		4171256A29C8503200CCE6D4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171256929C8503200CCE6D4 /* SettingViewController.swift */; };
@@ -108,7 +107,6 @@
 		41556BBB2A408D8500FBE0B7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		41556BC02A44BFD000FBE0B7 /* WheatherTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherTableHeader.swift; sourceTree = "<group>"; };
 		41556BC22A45874C00FBE0B7 /* WheatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherCollectionViewCell.swift; sourceTree = "<group>"; };
-		41556BC42A4B0BF000FBE0B7 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		4171256229C8503200CCE6D4 /* WheatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4171256529C8503200CCE6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4171256729C8503200CCE6D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				414B537529D3328300266E69 /* WheatherModel.swift */,
 				41336B4D29D6035600F35CDC /* GeoDecoderModel.swift */,
 				4138584D2A3B131800A8AEAC /* UserSettings.swift */,
-				41556BC42A4B0BF000FBE0B7 /* LocationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -429,7 +426,6 @@
 				414B535D29CDD60100266E69 /* DailyWheatherTableViewCell.swift in Sources */,
 				414B537229D1CF9E00266E69 /* NetworkManager.swift in Sources */,
 				41D9556229C9FD3D0000CFAB /* WheatherSectionHeader.swift in Sources */,
-				41556BC52A4B0BF000FBE0B7 /* LocationModel.swift in Sources */,
 				4171258329C868BC00CCE6D4 /* Texts.swift in Sources */,
 				414B537629D3328300266E69 /* WheatherModel.swift in Sources */,
 				41A72F932A39CC91002B80B5 /* DailyWheatherView.swift in Sources */,
