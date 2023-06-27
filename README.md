@@ -23,6 +23,6 @@ The weather forecast app is designed to display current weather conditions and f
   - JSON parsing using Codable Protocol
   - UserDefaults
   - CoreData
-  
+  - PushNotification
   
   
