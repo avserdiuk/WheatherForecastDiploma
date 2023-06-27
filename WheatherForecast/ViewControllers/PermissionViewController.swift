@@ -63,9 +63,12 @@ extension PermissionViewController : CLLocationManagerDelegate {
             let lat = location.coordinate.latitude
 
             NetworkManager().getDescriptionWithCoords((lat,lon)) { locationName in
-
                 NetworkManager().getWheater(coordinates: (lat, lon)) { wheather in
                     CoreDataManager.shared.addLocation(name: locationName, longitude: Float(lon), latitude: Float(lat), wheather: wheather) {
+
+                        let time = Int(NSDate().timeIntervalSince1970)
+                        UserDefaults.standard.set(time, forKey: "lastTimeUpdate")
+
                         DispatchQueue.main.async {
                             self.navigationController?.pushViewController(PageViewController(), animated: true)
                         }

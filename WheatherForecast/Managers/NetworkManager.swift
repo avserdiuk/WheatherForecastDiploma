@@ -75,7 +75,7 @@ class NetworkManager {
 
             do {
                 let result = try JSONDecoder().decode(Wheather.self, from: data)
-                print(result)
+                //print(result)
                 complition(result)
             } catch {
                 print(#function, error)

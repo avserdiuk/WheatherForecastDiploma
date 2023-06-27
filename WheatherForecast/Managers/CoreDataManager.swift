@@ -44,9 +44,25 @@ class CoreDataManager {
         do {
             let locationsFetched = try persistentContainer.viewContext.fetch(locationsRequest)
             locations = locationsFetched
+
         } catch {
             print(#function, error)
             locations = []
+        }
+    }
+
+
+    func clearAll(){
+        let locationsRequest = Locations.fetchRequest()
+        do {
+            let locationsFetched = try persistentContainer.viewContext.fetch(locationsRequest)
+            locations = locationsFetched
+            locationsFetched.forEach { location in
+                persistentContainer.viewContext.delete(location)
+            }
+            saveContext()
+        } catch {
+            print(#function, error)
         }
     }
 
@@ -57,6 +73,7 @@ class CoreDataManager {
         newLocataion.name = name
         newLocataion.latitude = latitude
         newLocataion.longitude = longitude
+        newLocataion.lastUpdate = Int32(NSDate().timeIntervalSince1970)
 
         let wheatherFact = WheatherFact(context: persistentContainer.viewContext)
         wheatherFact.temp = Int32(wheather.fact.temp)
@@ -123,4 +140,82 @@ class CoreDataManager {
         reloadLocationList()
         complition()
     }
+
+
+    func updateLocation(location: Locations, wheather: Wheather,  complition: @escaping () -> ()){
+        let predicate = NSPredicate(format: "name == %@", "\(location.name!)")
+        let locationsRequest = Locations.fetchRequest()
+        locationsRequest.predicate = predicate
+        do {
+            let locationsFetched = try persistentContainer.viewContext.fetch(locationsRequest)
+            location.lastUpdate = Int32(NSDate().timeIntervalSince1970)
+
+            location.fact!.temp = Int32(wheather.fact.temp)
+            location.fact!.cloudness = wheather.fact.cloudness
+            location.fact!.condition = wheather.fact.condition
+            location.fact!.humidity = wheather.fact.humidity
+            location.fact!.windSpeed = wheather.fact.windSpeed
+
+            var forecast = location.forecast?.allObjects as! [WheatherForecast]
+            forecast.sort{ $0.date! < $1.date! }
+
+            for i in 0...6 {
+                forecast[i].date = wheather.forecasts[i].date
+                forecast[i].sunrise = wheather.forecasts[i].sunrise
+                forecast[i].unixtime = Int32(wheather.forecasts[i].unixtime)
+                forecast[i].sunset = wheather.forecasts[i].sunset
+
+                var parts = forecast[i].forecastPart?.allObjects as! [ForecastPart]
+                parts.sort{ $0.name! < $1.name! }
+
+                parts[0].tempMin = Int32(wheather.forecasts[i].parts.day.tempMin)
+                parts[0].tempMax = Int32(wheather.forecasts[i].parts.day.tempMax)
+                parts[0].tempAvg = Int32(wheather.forecasts[i].parts.day.tempAvg)
+                parts[0].tempFeelLike = Int32(wheather.forecasts[i].parts.day.tempFeelLike)
+                parts[0].condition = wheather.forecasts[i].parts.day.condition
+                parts[0].precipitation = wheather.forecasts[i].parts.day.precipitation
+                parts[0].windSpeed = wheather.forecasts[i].parts.day.windSpeed
+                parts[0].windDir = wheather.forecasts[i].parts.day.windDir
+                parts[0].cloudness = wheather.forecasts[i].parts.day.cloudness
+                parts[0].uvIndex = Int32(wheather.forecasts[i].parts.day.uvIndex ?? 0)
+
+                parts[1].tempMin = Int32(wheather.forecasts[i].parts.night.tempMin)
+                parts[1].tempMax = Int32(wheather.forecasts[i].parts.night.tempMax)
+                parts[1].tempAvg = Int32(wheather.forecasts[i].parts.night.tempAvg)
+                parts[1].tempFeelLike = Int32(wheather.forecasts[i].parts.night.tempFeelLike)
+                parts[1].condition = wheather.forecasts[i].parts.night.condition
+                parts[1].precipitation = wheather.forecasts[i].parts.night.precipitation
+                parts[1].windSpeed = wheather.forecasts[i].parts.night.windSpeed
+                parts[1].windDir = wheather.forecasts[i].parts.night.windDir
+                parts[1].cloudness = wheather.forecasts[i].parts.night.cloudness
+                parts[1].uvIndex = Int32(wheather.forecasts[i].parts.night.uvIndex ?? 0)
+
+                if i <= 1 {
+                    for k in 0...23 {
+                        var forecastIndex = forecast[i].forecastHours?.allObjects as! [ForecastHours]
+                        forecastIndex.sort { $0.hour < $1.hour }
+                        forecastIndex[k].temp = Int32(wheather.forecasts[i].hours[k].temp)
+                        forecastIndex[k].feelsLike = Int32(wheather.forecasts[i].hours[k].feelsLike)
+                        forecastIndex[k].hour = Int32(wheather.forecasts[i].hours[k].hour)!
+                        forecastIndex[k].condition = wheather.forecasts[i].hours[k].condition
+                        forecastIndex[k].windSpeed = wheather.forecasts[i].hours[k].windSpeed
+                        forecastIndex[k].windDir = wheather.forecasts[i].hours[k].windDir
+                        forecastIndex[k].precipitation = wheather.forecasts[i].hours[k].precipitation
+                        forecastIndex[k].cloudness = wheather.forecasts[i].hours[k].cloudness
+                    }
+                }
+
+        }
+
+
+    } catch {
+        print(#function, error)
+    }
+
+    saveContext()
+    reloadLocationList()
+    complition()
+}
+
+
 }

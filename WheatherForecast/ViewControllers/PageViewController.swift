@@ -103,6 +103,9 @@ class PageViewController: UIViewController {
                 NetworkManager().getWheater(coordinates: coords) { wheather in
                     CoreDataManager.shared.addLocation(name: desc, longitude: Float(coords.1), latitude: Float(coords.0), wheather: wheather) {
 
+                        let time = Int(NSDate().timeIntervalSince1970)
+                        UserDefaults.standard.set(time, forKey: "lastTimeUpdate")
+
                         DispatchQueue.main.async {
                             self.locations = CoreDataManager.shared.locations
                             self.viewDidLoad()

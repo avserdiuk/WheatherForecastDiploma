@@ -33,7 +33,7 @@ class WheatherViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        checkUpdate()
     }
 
     init(location: Locations, viewController : UIViewController) {
@@ -46,6 +46,23 @@ class WheatherViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func checkUpdate(){
+        let lastUpdate = location!.lastUpdate
+        let now = Int32(NSDate().timeIntervalSince1970)
+        if now - lastUpdate > 3600 {
+            print("Need to update")
+            NetworkManager().getWheater(coordinates: (Double(location!.latitude), Double(location!.longitude))) { forecast in
+                CoreDataManager.shared.updateLocation(location: self.location!, wheather: forecast) {
+                    print("Update is finish")
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        } else {
+            print("forecast is fresh")
+        }
+    }
 
     func setConstraints(){
         NSLayoutConstraint.activate([
