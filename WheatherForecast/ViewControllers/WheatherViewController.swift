@@ -33,6 +33,7 @@ class WheatherViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
         checkUpdate()
     }
 

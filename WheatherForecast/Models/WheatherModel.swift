@@ -18,7 +18,7 @@ struct Fact : Codable {
     let condition: String
     let cloudness : Double // облачность
     let humidity : Double // влажность
-
+    
     enum CodingKeys: String, CodingKey {
         case temp
         case windSpeed = "wind_speed"
@@ -35,7 +35,7 @@ struct Forecast: Codable {
     let sunset : String?
     let parts: Parts
     let hours : [Hours]
-
+    
     enum CodingKeys: String, CodingKey {
         case date
         case unixtime = "date_ts"
@@ -61,7 +61,7 @@ struct Day: Codable {
     let windDir : String
     let cloudness: Double
     let uvIndex: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case tempMin = "temp_min"
         case tempMax = "temp_max"
@@ -85,7 +85,7 @@ struct Hours : Codable {
     let windDir : String
     let precipitation : Double
     let cloudness: Double
-
+    
     enum CodingKeys: String, CodingKey {
         case temp
         case feelsLike = "feels_like"
@@ -95,7 +95,7 @@ struct Hours : Codable {
         case windDir = "wind_dir"
         case precipitation = "prec_strength"
         case cloudness
-
+        
     }
 }
 

@@ -12,7 +12,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var rootController: UIViewController?
     let param = UserDefaults.standard.bool(forKey: "isFirstOpenApp") // default = false
-    let lastTimeUpdate = UserDefaults.standard.integer(forKey: "lastTimeUpdate")
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -41,6 +40,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
         CoreDataManager.shared.saveContext()
         }
-
 }
 

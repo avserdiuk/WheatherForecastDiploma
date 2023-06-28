@@ -51,7 +51,6 @@ class CoreDataManager {
         }
     }
 
-
     func clearAll(){
         let locationsRequest = Locations.fetchRequest()
         do {
@@ -65,7 +64,6 @@ class CoreDataManager {
             print(#function, error)
         }
     }
-
 
     // добавление новой локации
     func addLocation(name : String, longitude: Float, latitude: Float, wheather: Wheather,  complition: @escaping () -> ()){
@@ -157,13 +155,12 @@ class CoreDataManager {
 
     }
 
-
     func updateLocation(location: Locations, wheather: Wheather,  complition: @escaping () -> ()){
         let predicate = NSPredicate(format: "name == %@", "\(location.name!)")
         let locationsRequest = Locations.fetchRequest()
         locationsRequest.predicate = predicate
         do {
-            let locationsFetched = try persistentContainer.viewContext.fetch(locationsRequest)
+            let _ = try persistentContainer.viewContext.fetch(locationsRequest)
             location.lastUpdate = Int32(NSDate().timeIntervalSince1970)
 
             location.fact!.temp = Int32(wheather.fact.temp)
@@ -221,17 +218,16 @@ class CoreDataManager {
                     }
                 }
 
+            }
+
+        } catch {
+            print(#function, error)
         }
 
-
-    } catch {
-        print(#function, error)
+        saveContext()
+        reloadLocationList()
+        complition()
     }
-
-    saveContext()
-    reloadLocationList()
-    complition()
-}
 
 
 }
