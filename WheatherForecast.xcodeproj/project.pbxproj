@@ -158,6 +158,7 @@
 		4107EF7C29C8DB42009C24C1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4107EF7A29C8D87A009C24C1 /* CustomUIViews & Extensions.swift */,
 				41A72F8C2A38B1FB002B80B5 /* PermissionView.swift */,
 				41A72F8E2A39B194002B80B5 /* SettingView.swift */,
 				41A72F922A39CC91002B80B5 /* DailyWheatherView.swift */,
@@ -239,7 +240,6 @@
 				4171258129C868A600CCE6D4 /* Models */,
 				4147C96329DB0E5B00C25279 /* Managers */,
 				4107EF7C29C8DB42009C24C1 /* Views */,
-				4107EF7A29C8D87A009C24C1 /* CustomUIViews & Extensions.swift */,
 				414B536229CEFB8B00266E69 /* Fonts */,
 				4171257F29C8639000CCE6D4 /* Colors.swift */,
 				4171258229C868BC00CCE6D4 /* Texts.swift */,

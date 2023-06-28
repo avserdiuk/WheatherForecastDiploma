@@ -16,6 +16,7 @@ class PermissionViewController: UIViewController {
         return manager
     }()
 
+    // Устанавливаем вью в качестве основного вью этого контроллера и назнаем таргеты на кнопки
     override func loadView() {
         self.view = PermissionView()
         view().acceptButton.addTarget(self, action: #selector(didTapAcceptButton), for: .touchUpInside)
@@ -57,16 +58,14 @@ extension PermissionViewController : CLLocationManagerDelegate {
         didUpdateLocations locations: [CLLocation]
     ) {
 
+        // для введенной локации запрашиваем погоду и записываем к базу данных
         if let location = locations.first {
             let lon = location.coordinate.longitude
             let lat = location.coordinate.latitude
-            let time = Int(NSDate().timeIntervalSince1970)
 
             NetworkManager().getDescriptionWithCoords((lat,lon)) { locationName in
                 NetworkManager().getWheater(coordinates: (lat, lon)) { wheather in
                     CoreDataManager.shared.addLocation(name: locationName, longitude: Float(lon), latitude: Float(lat), wheather: wheather) {
-
-                        UserDefaults.standard.set(time, forKey: "lastTimeUpdate")
 
                         DispatchQueue.main.async {
                             self.navigationController?.pushViewController(PageViewController(), animated: true)

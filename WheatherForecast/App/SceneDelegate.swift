@@ -18,8 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(windowScene: windowScene)
 
+        // Обновляем список локаций из базы
         CoreDataManager.shared.reloadLocationList()
 
+        // Проверка на первый запуск приложения
         if param == false {
             // если произошел первый запуск приложения, то:
 

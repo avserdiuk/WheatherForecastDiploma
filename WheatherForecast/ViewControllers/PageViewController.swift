@@ -77,7 +77,8 @@ class PageViewController: UIViewController {
         navigationItem.leftBarButtonItems = [menu]
         navigationItem.rightBarButtonItems = [point]
 
-        if CoreDataManager.shared.locations.count > 3  {
+        // добавляем ограничения на ввод и удаление локаций
+        if CoreDataManager.shared.locations.count > 4  {
             navigationItem.rightBarButtonItems = [trash]
         } else if CoreDataManager.shared.locations.count == 1 {
             navigationItem.rightBarButtonItems = [point]
@@ -132,14 +133,9 @@ class PageViewController: UIViewController {
             let textField = alert?.textFields![0]
             guard let city = textField?.text else { return }
 
-
-
             NetworkManager().getCoordsWithString(city) { desc, coords in
                 NetworkManager().getWheater(coordinates: coords) { wheather in
                     CoreDataManager.shared.addLocation(name: desc, longitude: Float(coords.1), latitude: Float(coords.0), wheather: wheather) {
-
-                        let time = Int(NSDate().timeIntervalSince1970)
-                        UserDefaults.standard.set(time, forKey: "lastTimeUpdate")
 
                         DispatchQueue.main.async {
                             self.locations = CoreDataManager.shared.locations
