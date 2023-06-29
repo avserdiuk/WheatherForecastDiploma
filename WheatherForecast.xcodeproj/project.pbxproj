@@ -26,7 +26,7 @@
 		41556BBC2A408D8500FBE0B7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41556BBB2A408D8500FBE0B7 /* CoreDataManager.swift */; };
 		41556BC12A44BFD000FBE0B7 /* WheatherTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41556BC02A44BFD000FBE0B7 /* WheatherTableHeader.swift */; };
 		41556BC32A45874C00FBE0B7 /* WheatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41556BC22A45874C00FBE0B7 /* WheatherCollectionViewCell.swift */; };
-		41556BCB2A4D99CE00FBE0B7 /* WheatherForecast.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41556BC92A4D99CE00FBE0B7 /* WheatherForecast.xcdatamodeld */; };
+		41556BD12A4D9A3A00FBE0B7 /* WheatherForecast.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41556BCF2A4D9A3A00FBE0B7 /* WheatherForecast.xcdatamodeld */; };
 		4171256629C8503200CCE6D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171256529C8503200CCE6D4 /* AppDelegate.swift */; };
 		4171256829C8503200CCE6D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171256729C8503200CCE6D4 /* SceneDelegate.swift */; };
 		4171256A29C8503200CCE6D4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171256929C8503200CCE6D4 /* SettingViewController.swift */; };
@@ -104,7 +104,7 @@
 		41556BBB2A408D8500FBE0B7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		41556BC02A44BFD000FBE0B7 /* WheatherTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherTableHeader.swift; sourceTree = "<group>"; };
 		41556BC22A45874C00FBE0B7 /* WheatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherCollectionViewCell.swift; sourceTree = "<group>"; };
-		41556BCA2A4D99CE00FBE0B7 /* CoreDataProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataProject.xcdatamodel; sourceTree = "<group>"; };
+		41556BD02A4D9A3A00FBE0B7 /* CoreDataProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataProject.xcdatamodel; sourceTree = "<group>"; };
 		4171256229C8503200CCE6D4 /* WheatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4171256529C8503200CCE6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4171256729C8503200CCE6D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 				4171256429C8503200CCE6D4 /* WheatherForecast */,
 				418CF8D729DB520E00EAA5F5 /* WheaterForecastExtension */,
 				418CF8D229DB520E00EAA5F5 /* Frameworks */,
-				41556BC92A4D99CE00FBE0B7 /* WheatherForecast.xcdatamodeld */,
+				41556BCF2A4D9A3A00FBE0B7 /* WheatherForecast.xcdatamodeld */,
 				4171256329C8503200CCE6D4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -446,7 +446,7 @@
 				41E8171A29CB8804003665CD /* Forecast24ViewController.swift in Sources */,
 				414B535829CDC18100266E69 /* DailyWheatherTableHeader.swift in Sources */,
 				414B535B29CDC4C000266E69 /* DailyWheatherCollectionViewCell.swift in Sources */,
-				41556BCB2A4D99CE00FBE0B7 /* WheatherForecast.xcdatamodeld in Sources */,
+				41556BD12A4D9A3A00FBE0B7 /* WheatherForecast.xcdatamodeld in Sources */,
 				41A72F912A39BEDB002B80B5 /* PageView.swift in Sources */,
 				414B535129CCBE2900266E69 /* ForecastTable24hHeader.swift in Sources */,
 				41D9556629CA031D0000CFAB /* PageViewController.swift in Sources */,
@@ -747,14 +747,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		41556BC92A4D99CE00FBE0B7 /* WheatherForecast.xcdatamodeld */ = {
+		41556BCF2A4D9A3A00FBE0B7 /* WheatherForecast.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				41556BCA2A4D99CE00FBE0B7 /* CoreDataProject.xcdatamodel */,
+				41556BD02A4D9A3A00FBE0B7 /* CoreDataProject.xcdatamodel */,
 			);
-			currentVersion = 41556BCA2A4D99CE00FBE0B7 /* CoreDataProject.xcdatamodel */;
-			name = WheatherForecast.xcdatamodeld;
-			path = "../../../../Downloads/WheatherForecastDiploma-main 2/WheatherForecast/WheatherForecast.xcdatamodeld";
+			currentVersion = 41556BD02A4D9A3A00FBE0B7 /* CoreDataProject.xcdatamodel */;
+			path = WheatherForecast.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
