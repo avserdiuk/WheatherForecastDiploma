@@ -74,7 +74,10 @@ class PageViewController: UIViewController {
         let menu = UIBarButtonItem(image: UIImage(named: "menu"), style: .done, target: self, action: #selector(showMenu))
         let point = UIBarButtonItem(image: UIImage(named: "point"), style: .done, target: self, action: #selector(showAlert))
         let trash = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .done, target: self, action: #selector(showDeleteAlert))
-        navigationItem.leftBarButtonItems = [menu]
+        
+        if CoreDataManager.shared.locations.count > 0 {
+            navigationItem.leftBarButtonItems = [menu]
+        }
         navigationItem.rightBarButtonItems = [point]
 
         // добавляем ограничения на ввод и удаление локаций
@@ -144,7 +147,13 @@ class PageViewController: UIViewController {
                         }
                     }
                 }
+                
+//                NetworkManager().getWeather(coordinates: coords) { forecast in
+//                    print(dump(forecast))
+//                }
             }
+            
+           
 
         }))
 

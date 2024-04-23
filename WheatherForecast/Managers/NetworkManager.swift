@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import WeatherKit
+import CoreLocation
 
 class NetworkManager {
     
@@ -67,15 +69,18 @@ class NetworkManager {
         guard let url = URL(string: "https://api.weather.yandex.ru/v2/forecast?lat=\(coordinates.lat)&lon=\(coordinates.lon)&hours=true") else { return }
         
         var request = URLRequest(url: url)
-        request.addValue("6665563f-9e68-42d2-90c0-5976f1f3d85b", forHTTPHeaderField: "X-Yandex-API-Key")
+        request.addValue("df6d2f54-9221-4eef-922a-1a0dffb6660d", forHTTPHeaderField: "X-Yandex-API-Key")
         
         let task = urlSession.dataTask(with: request) { data, response, error in
             
             guard let data else { return }
             
+            guard let resp = response as? HTTPURLResponse else { return }
+            
+            //            print(resp.statusCode)
+            
             do {
                 let result = try JSONDecoder().decode(Wheather.self, from: data)
-                //print(result)
                 complition(result)
             } catch {
                 print(#function, error)
@@ -84,4 +89,21 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    func getWeather(coordinates: (lat: Double,lon: Double), complition: @escaping (_ forecast : Wheather) -> ()) {
+        Task {
+            await doAsyncWork(coordinates: coordinates)
+        }
+        
+    }
+    
+    func doAsyncWork(coordinates: (lat: Double,lon: Double)) async {
+        
+        let service = WeatherService.shared
+        let response = try? await service.weather(
+            for: CLLocation.init(latitude: coordinates.lat, longitude:  coordinates.lon),
+            including: .current, .daily)
+        
+    }
+    
 }

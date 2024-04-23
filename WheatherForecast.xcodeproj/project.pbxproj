@@ -34,20 +34,6 @@
 		4171257D29C8628A00CCE6D4 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171257C29C8628A00CCE6D4 /* PermissionViewController.swift */; };
 		4171258029C8639000CCE6D4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171257F29C8639000CCE6D4 /* Colors.swift */; };
 		4171258329C868BC00CCE6D4 /* Texts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171258229C868BC00CCE6D4 /* Texts.swift */; };
-		418CF8D429DB520E00EAA5F5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 418CF8D329DB520E00EAA5F5 /* WidgetKit.framework */; };
-		418CF8D629DB520E00EAA5F5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 418CF8D529DB520E00EAA5F5 /* SwiftUI.framework */; };
-		418CF8D929DB520E00EAA5F5 /* WheaterForecastExtensionBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CF8D829DB520E00EAA5F5 /* WheaterForecastExtensionBundle.swift */; };
-		418CF8DB29DB520E00EAA5F5 /* WheaterForecastExtensionLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CF8DA29DB520E00EAA5F5 /* WheaterForecastExtensionLiveActivity.swift */; };
-		418CF8DD29DB520E00EAA5F5 /* WheaterForecastExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CF8DC29DB520E00EAA5F5 /* WheaterForecastExtension.swift */; };
-		418CF8E029DB520F00EAA5F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418CF8DF29DB520F00EAA5F5 /* Assets.xcassets */; };
-		418CF8E229DB520F00EAA5F5 /* WheaterForecastExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 418CF8DE29DB520E00EAA5F5 /* WheaterForecastExtension.intentdefinition */; };
-		418CF8E329DB520F00EAA5F5 /* WheaterForecastExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 418CF8DE29DB520E00EAA5F5 /* WheaterForecastExtension.intentdefinition */; };
-		418CF8E629DB520F00EAA5F5 /* WheaterForecastExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 418CF8D129DB520E00EAA5F5 /* WheaterForecastExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		418CF8EB29DB570600EAA5F5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171257F29C8639000CCE6D4 /* Colors.swift */; };
-		418CF8EC29DB5B8200EAA5F5 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414B536929CEFD5A00266E69 /* Fonts.swift */; };
-		418CF8ED29DB5B9000EAA5F5 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 414B536C29CEFFC300266E69 /* Rubik-Bold.ttf */; };
-		418CF8EE29DB5B9000EAA5F5 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 414B536B29CEFFC300266E69 /* Rubik-SemiBold.ttf */; };
-		418CF8EF29DB5B9000EAA5F5 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 414B536D29CEFFC300266E69 /* Rubik-Regular.ttf */; };
 		41995DB929DD8E040036AA7B /* WheatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41995DB829DD8E030036AA7B /* WheatherViewController.swift */; };
 		41A72F8D2A38B1FB002B80B5 /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A72F8C2A38B1FB002B80B5 /* PermissionView.swift */; };
 		41A72F8F2A39B194002B80B5 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A72F8E2A39B194002B80B5 /* SettingView.swift */; };
@@ -60,16 +46,6 @@
 		41E8171A29CB8804003665CD /* Forecast24ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E8171929CB8804003665CD /* Forecast24ViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		418CF8E429DB520F00EAA5F5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4171255A29C8503200CCE6D4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 418CF8D029DB520E00EAA5F5;
-			remoteInfo = WheaterForecastExtensionExtension;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		418CF8E729DB520F00EAA5F5 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -77,7 +53,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				418CF8E629DB520F00EAA5F5 /* WheaterForecastExtensionExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +80,7 @@
 		41556BC02A44BFD000FBE0B7 /* WheatherTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherTableHeader.swift; sourceTree = "<group>"; };
 		41556BC22A45874C00FBE0B7 /* WheatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		41556BD02A4D9A3A00FBE0B7 /* CoreDataProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataProject.xcdatamodel; sourceTree = "<group>"; };
+		41556BD72A4DB56100FBE0B7 /* WheatherForecast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WheatherForecast.entitlements; sourceTree = "<group>"; };
 		4171256229C8503200CCE6D4 /* WheatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4171256529C8503200CCE6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4171256729C8503200CCE6D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,14 +90,8 @@
 		4171257C29C8628A00CCE6D4 /* PermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
 		4171257F29C8639000CCE6D4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		4171258229C868BC00CCE6D4 /* Texts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texts.swift; sourceTree = "<group>"; };
-		418CF8D129DB520E00EAA5F5 /* WheaterForecastExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WheaterForecastExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		418CF8D329DB520E00EAA5F5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		418CF8D529DB520E00EAA5F5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		418CF8D829DB520E00EAA5F5 /* WheaterForecastExtensionBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheaterForecastExtensionBundle.swift; sourceTree = "<group>"; };
-		418CF8DA29DB520E00EAA5F5 /* WheaterForecastExtensionLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheaterForecastExtensionLiveActivity.swift; sourceTree = "<group>"; };
-		418CF8DC29DB520E00EAA5F5 /* WheaterForecastExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheaterForecastExtension.swift; sourceTree = "<group>"; };
-		418CF8DE29DB520E00EAA5F5 /* WheaterForecastExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WheaterForecastExtension.intentdefinition; sourceTree = "<group>"; };
-		418CF8DF29DB520F00EAA5F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41995DB829DD8E030036AA7B /* WheatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherViewController.swift; sourceTree = "<group>"; };
 		41A72F8C2A38B1FB002B80B5 /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
 		41A72F8E2A39B194002B80B5 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -132,7 +102,6 @@
 		41D9556329C9FF530000CFAB /* WheatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherTableViewCell.swift; sourceTree = "<group>"; };
 		41D9556529CA031D0000CFAB /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		41E8171929CB8804003665CD /* Forecast24ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast24ViewController.swift; sourceTree = "<group>"; };
-		41FF588129DB614400CC5999 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,15 +109,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		418CF8CE29DB520E00EAA5F5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				418CF8D629DB520E00EAA5F5 /* SwiftUI.framework in Frameworks */,
-				418CF8D429DB520E00EAA5F5 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				4171256429C8503200CCE6D4 /* WheatherForecast */,
-				418CF8D729DB520E00EAA5F5 /* WheaterForecastExtension */,
 				418CF8D229DB520E00EAA5F5 /* Frameworks */,
 				41556BCF2A4D9A3A00FBE0B7 /* WheatherForecast.xcdatamodeld */,
 				4171256329C8503200CCE6D4 /* Products */,
@@ -227,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				4171256229C8503200CCE6D4 /* WheatherForecast.app */,
-				418CF8D129DB520E00EAA5F5 /* WheaterForecastExtensionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,6 +193,7 @@
 		4171256429C8503200CCE6D4 /* WheatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				41556BD72A4DB56100FBE0B7 /* WheatherForecast.entitlements */,
 				4171257E29C8637700CCE6D4 /* App */,
 				4171257929C8623500CCE6D4 /* ViewControllers */,
 				4171258129C868A600CCE6D4 /* Models */,
@@ -289,19 +248,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		418CF8D729DB520E00EAA5F5 /* WheaterForecastExtension */ = {
-			isa = PBXGroup;
-			children = (
-				418CF8D829DB520E00EAA5F5 /* WheaterForecastExtensionBundle.swift */,
-				418CF8DA29DB520E00EAA5F5 /* WheaterForecastExtensionLiveActivity.swift */,
-				418CF8DC29DB520E00EAA5F5 /* WheaterForecastExtension.swift */,
-				418CF8DE29DB520E00EAA5F5 /* WheaterForecastExtension.intentdefinition */,
-				418CF8DF29DB520F00EAA5F5 /* Assets.xcassets */,
-				41FF588129DB614400CC5999 /* Info.plist */,
-			);
-			path = WheaterForecastExtension;
-			sourceTree = "<group>";
-		};
 		41E8171B29CB888D003665CD /* WheatherScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,29 +274,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				418CF8E529DB520F00EAA5F5 /* PBXTargetDependency */,
 			);
 			name = WheatherForecast;
 			productName = WheatherForecast;
 			productReference = 4171256229C8503200CCE6D4 /* WheatherForecast.app */;
 			productType = "com.apple.product-type.application";
-		};
-		418CF8D029DB520E00EAA5F5 /* WheaterForecastExtensionExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 418CF8EA29DB520F00EAA5F5 /* Build configuration list for PBXNativeTarget "WheaterForecastExtensionExtension" */;
-			buildPhases = (
-				418CF8CD29DB520E00EAA5F5 /* Sources */,
-				418CF8CE29DB520E00EAA5F5 /* Frameworks */,
-				418CF8CF29DB520E00EAA5F5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = WheaterForecastExtensionExtension;
-			productName = WheaterForecastExtensionExtension;
-			productReference = 418CF8D129DB520E00EAA5F5 /* WheaterForecastExtensionExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -360,12 +288,9 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					4171256129C8503200CCE6D4 = {
-						CreatedOnToolsVersion = 14.1;
-					};
-					418CF8D029DB520E00EAA5F5 = {
 						CreatedOnToolsVersion = 14.1;
 					};
 				};
@@ -384,7 +309,6 @@
 			projectRoot = "";
 			targets = (
 				4171256129C8503200CCE6D4 /* WheatherForecast */,
-				418CF8D029DB520E00EAA5F5 /* WheaterForecastExtensionExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -398,17 +322,6 @@
 				414B537029CEFFC300266E69 /* Rubik-Regular.ttf in Resources */,
 				414B536F29CEFFC300266E69 /* Rubik-Bold.ttf in Resources */,
 				414B536E29CEFFC300266E69 /* Rubik-SemiBold.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		418CF8CF29DB520E00EAA5F5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				418CF8EE29DB5B9000EAA5F5 /* Rubik-SemiBold.ttf in Resources */,
-				418CF8EF29DB5B9000EAA5F5 /* Rubik-Regular.ttf in Resources */,
-				418CF8E029DB520F00EAA5F5 /* Assets.xcassets in Resources */,
-				418CF8ED29DB5B9000EAA5F5 /* Rubik-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,7 +347,6 @@
 				4171258029C8639000CCE6D4 /* Colors.swift in Sources */,
 				414B535529CDC02B00266E69 /* DailyWheatherViewController.swift in Sources */,
 				4171256629C8503200CCE6D4 /* AppDelegate.swift in Sources */,
-				418CF8E329DB520F00EAA5F5 /* WheaterForecastExtension.intentdefinition in Sources */,
 				4171256829C8503200CCE6D4 /* SceneDelegate.swift in Sources */,
 				414B536129CE242600266E69 /* DailyWheatherAirQualityTableViewCell.swift in Sources */,
 				414B536A29CEFD5A00266E69 /* Fonts.swift in Sources */,
@@ -456,28 +368,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		418CF8CD29DB520E00EAA5F5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				418CF8DB29DB520E00EAA5F5 /* WheaterForecastExtensionLiveActivity.swift in Sources */,
-				418CF8EB29DB570600EAA5F5 /* Colors.swift in Sources */,
-				418CF8D929DB520E00EAA5F5 /* WheaterForecastExtensionBundle.swift in Sources */,
-				418CF8E229DB520F00EAA5F5 /* WheaterForecastExtension.intentdefinition in Sources */,
-				418CF8EC29DB5B8200EAA5F5 /* Fonts.swift in Sources */,
-				418CF8DD29DB520E00EAA5F5 /* WheaterForecastExtension.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		418CF8E529DB520F00EAA5F5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 418CF8D029DB520E00EAA5F5 /* WheaterForecastExtensionExtension */;
-			targetProxy = 418CF8E429DB520F00EAA5F5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4171257429C8503200CCE6D4 /* Debug */ = {
@@ -516,6 +407,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -576,6 +468,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -600,15 +493,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WheatherForecast/WheatherForecast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M59369L9JK;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 8J728TA225;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WheatherForecast/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Моя погода";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = " нужно для приложения 1";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "нужно для приложения 3";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "нужно для приложения 2";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для автоматического определния места где показать погоду";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для автоматического определния места где показать погоду";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для автоматического определния места где показать погоду";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -616,14 +511,15 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = aserdiuk.WheatherForecast;
+				PRODUCT_BUNDLE_IDENTIFIER = com.enzo.wheatherforecast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -633,15 +529,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WheatherForecast/WheatherForecast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M59369L9JK;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 8J728TA225;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WheatherForecast/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Моя погода";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = " нужно для приложения 1";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "нужно для приложения 3";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "нужно для приложения 2";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для автоматического определния места где показать погоду";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для автоматического определния места где показать погоду";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для автоматического определния места где показать погоду";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -649,68 +547,15 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = aserdiuk.WheatherForecast;
+				PRODUCT_BUNDLE_IDENTIFIER = com.enzo.wheatherforecast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		418CF8E829DB520F00EAA5F5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M59369L9JK;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WheaterForecastExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = WheaterForecastExtension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = aserdiuk.WheatherForecast.WheaterForecastExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		418CF8E929DB520F00EAA5F5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M59369L9JK;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WheaterForecastExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = WheaterForecastExtension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = aserdiuk.WheatherForecast.WheaterForecastExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -731,15 +576,6 @@
 			buildConfigurations = (
 				4171257729C8503200CCE6D4 /* Debug */,
 				4171257829C8503200CCE6D4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		418CF8EA29DB520F00EAA5F5 /* Build configuration list for PBXNativeTarget "WheaterForecastExtensionExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				418CF8E829DB520F00EAA5F5 /* Debug */,
-				418CF8E929DB520F00EAA5F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

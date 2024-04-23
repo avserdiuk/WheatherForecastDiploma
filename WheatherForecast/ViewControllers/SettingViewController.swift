@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Foundation
+
 
 class SettingViewController: UIViewController {
 
@@ -14,6 +16,7 @@ class SettingViewController: UIViewController {
 
     override func loadView() {
         self.view = SettingView()
+        
     }
 
     override func viewDidLoad() {
@@ -22,6 +25,8 @@ class SettingViewController: UIViewController {
 
         switchers = [view().settingItem0Switcher, view().settingItem1Switcher, view().settingItem2Switcher, view().settingItem3Switcher]
         setupSwitchers()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

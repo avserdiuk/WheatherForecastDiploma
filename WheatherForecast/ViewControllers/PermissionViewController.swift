@@ -22,6 +22,9 @@ class PermissionViewController: UIViewController {
         view().acceptButton.addTarget(self, action: #selector(didTapAcceptButton), for: .touchUpInside)
         view().declineButton.addTarget(self, action: #selector(didTapDeclineButton), for: .touchUpInside)
     }
+    
+    
+    
 
     func view() -> PermissionView {
         return self.view as! PermissionView

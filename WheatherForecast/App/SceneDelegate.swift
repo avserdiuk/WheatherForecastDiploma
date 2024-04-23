@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import CoreData
+
+import WeatherKit
+import CoreLocation
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -15,6 +20,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+
+       // let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Constants.appGroupID)!
+//        let storeURL = containerURL.appendingPathComponent("WheatherForecast.sqlite")
+//        let description = NSPersistentStoreDescription(url: storeURL)
+
+//        let container = NSPersistentContainer(name: "WheatherForecast")
+//        container.persistentStoreDescriptions = [description]
+//        container.loadPersistentStores { NSPersistentStoreDescription, Error in
+//            print("NSP - ", NSPersistentStoreDescription)
+//            print("NSPE - ", Error ?? "no error")
+//        }
 
         window = UIWindow(windowScene: windowScene)
 
@@ -37,7 +53,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = UINavigationController(rootViewController: rootController ?? UIViewController())
         window?.makeKeyAndVisible()
 
+
     }
+    
+    
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         CoreDataManager.shared.saveContext()
