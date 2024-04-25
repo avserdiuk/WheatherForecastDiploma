@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  WheatherForecast
 //
 //  Created by Алексей Сердюк on 23.04.2024.
@@ -10,7 +10,7 @@ import UIKit
 import WeatherKit
 import CoreLocation
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     let service = WeatherService()
     
@@ -45,6 +45,14 @@ class ViewController: UIViewController {
         return label
     }()
     
+    private lazy var conditionLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Солнечно"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        return label
+    }()
+    
     private lazy var blockInformation : UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
@@ -70,7 +78,6 @@ class ViewController: UIViewController {
         label.text = "Ощущается"
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
-        //label.layer.borderWidth = 1
         return label
     }()
     
@@ -80,7 +87,6 @@ class ViewController: UIViewController {
         label.text = "+34°"
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
-        //label.layer.borderWidth = 1
         return label
     }()
     
@@ -184,7 +190,7 @@ class ViewController: UIViewController {
     private lazy var blockSunsetSunriseLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "РАССВЕТ И ЗАКАТ"
+        label.text = "ВОСХОД И ЗАКАТ"
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
@@ -193,7 +199,7 @@ class ViewController: UIViewController {
     private lazy var blockSunsetSunriseLenghtDayLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Световой день:"
+        label.text = "Световой день длится:"
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
@@ -208,21 +214,66 @@ class ViewController: UIViewController {
         return label
     }()
     
-    private lazy var blockSunsetSunriseDayLightLabel : UILabel = {
+    private lazy var sunriseInformation : UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alignment = .center
+        view.distribution = .fillEqually
+        return view
+    }()
+    
+    private lazy var sunriseInformationLabel0 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Оставшийся дневной свет:"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.text = "ВОСХОД"
+        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
     }()
     
-    private lazy var blockSunsetSunriseDayLightLabel1 : UILabel = {
+    private lazy var sunriseInformationLabel1 : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "9ч 22м"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.text = "08:35"
+        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
+        return label
+    }()
+    
+    private lazy var sunsetInformation : UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alignment = .center
+        view.distribution = .fillEqually
+        return view
+    }()
+    
+    private lazy var sunsetInformationLabel0 : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "ЗАКАТ"
+        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
+        return label
+    }()
+    
+    private lazy var sunsetInformationLabel1 : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "20:55"
+        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
+        return label
+    }()
+    
+    private lazy var horizontLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Горизонт"
+        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
     }()
     
@@ -232,6 +283,7 @@ class ViewController: UIViewController {
         view.addSubview(image)
         view.addSubview(locationLabel)
         view.addSubview(temperatureLabel)
+        view.addSubview(conditionLabel)
         
         view.addSubview(blockInformation)
         blockInformation.addArrangedSubview(stackInformation1)
@@ -255,8 +307,15 @@ class ViewController: UIViewController {
         blockSunsetSunrise.addSubview(graphSunsetSunrise)
         blockSunsetSunrise.addSubview(blockSunsetSunriseLenghtDayLabel)
         blockSunsetSunrise.addSubview(blockSunsetSunriseLenghtDayLabel1)
-        blockSunsetSunrise.addSubview(blockSunsetSunriseDayLightLabel)
-        blockSunsetSunrise.addSubview(blockSunsetSunriseDayLightLabel1)
+        
+        blockSunsetSunrise.addSubview(sunriseInformation)
+        sunriseInformation.addArrangedSubview(sunriseInformationLabel0)
+        sunriseInformation.addArrangedSubview(sunriseInformationLabel1)
+        
+        blockSunsetSunrise.addSubview(sunsetInformation)
+        sunsetInformation.addArrangedSubview(sunsetInformationLabel0)
+        sunsetInformation.addArrangedSubview(sunsetInformationLabel1)
+        blockSunsetSunrise.addSubview(horizontLabel)
         
         NSLayoutConstraint.activate([
             
@@ -268,13 +327,16 @@ class ViewController: UIViewController {
             
             temperatureLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 0),
             temperatureLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            conditionLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 0),
+            conditionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            blockInformation.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 35),
+            blockInformation.topAnchor.constraint(equalTo: conditionLabel.bottomAnchor, constant: 30),
             blockInformation.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             blockInformation.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             blockInformation.heightAnchor.constraint(equalToConstant: 49),
             
-            blockSunsetSunrise.heightAnchor.constraint(equalToConstant: 229),
+            blockSunsetSunrise.heightAnchor.constraint(equalToConstant: 219),
             blockSunsetSunrise.topAnchor.constraint(equalTo: blockInformation.bottomAnchor, constant: 11),
             blockSunsetSunrise.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             blockSunsetSunrise.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
@@ -284,7 +346,7 @@ class ViewController: UIViewController {
             
             graphSunsetSunrise.leadingAnchor.constraint(equalTo: blockSunsetSunrise.leadingAnchor, constant: 18),
             graphSunsetSunrise.trailingAnchor.constraint(equalTo: blockSunsetSunrise.trailingAnchor, constant: -18),
-            graphSunsetSunrise.topAnchor.constraint(equalTo: blockSunsetSunriseLabel.bottomAnchor, constant: 32),
+            graphSunsetSunrise.topAnchor.constraint(equalTo: blockSunsetSunriseLabel.bottomAnchor, constant: 48),
             graphSunsetSunrise.heightAnchor.constraint(equalToConstant: 99),
             
             blockSunsetSunriseLenghtDayLabel.leadingAnchor.constraint(equalTo: blockSunsetSunrise.leadingAnchor, constant: 18),
@@ -293,11 +355,14 @@ class ViewController: UIViewController {
             blockSunsetSunriseLenghtDayLabel1.leadingAnchor.constraint(equalTo: blockSunsetSunriseLenghtDayLabel.trailingAnchor, constant: 5),
             blockSunsetSunriseLenghtDayLabel1.topAnchor.constraint(equalTo: graphSunsetSunrise.bottomAnchor, constant: 16),
             
-            blockSunsetSunriseDayLightLabel.leadingAnchor.constraint(equalTo: blockSunsetSunrise.leadingAnchor, constant: 18),
-            blockSunsetSunriseDayLightLabel.topAnchor.constraint(equalTo: blockSunsetSunriseLenghtDayLabel.bottomAnchor, constant: 16),
+            sunriseInformation.leadingAnchor.constraint(equalTo: graphSunsetSunrise.leadingAnchor, constant: 36),
+            sunriseInformation.topAnchor.constraint(equalTo: blockSunsetSunrise.topAnchor, constant: 58),
             
-            blockSunsetSunriseDayLightLabel1.leadingAnchor.constraint(equalTo: blockSunsetSunriseDayLightLabel.trailingAnchor, constant: 5),
-            blockSunsetSunriseDayLightLabel1.topAnchor.constraint(equalTo: blockSunsetSunriseLenghtDayLabel1.bottomAnchor, constant: 16),
+            sunsetInformation.trailingAnchor.constraint(equalTo: graphSunsetSunrise.trailingAnchor, constant: -46),
+            sunsetInformation.topAnchor.constraint(equalTo: blockSunsetSunrise.topAnchor, constant: 58),
+            
+            horizontLabel.trailingAnchor.constraint(equalTo: graphSunsetSunrise.trailingAnchor, constant: -5),
+            horizontLabel.topAnchor.constraint(equalTo: graphSunsetSunrise.topAnchor, constant: 54),
             
         ])
         
@@ -308,13 +373,21 @@ class ViewController: UIViewController {
     private func getWeather(){
         Task {
             if let (current, forecastDaily, forecastHourly) = await weather(for: CLLocation(latitude: 54.983334, longitude: 73.366669)) {
-                temperatureLabel.text = "\(Int(current.temperature.value.rounded()))°"
-                feelLikeLabel1.text = "\(Int(current.apparentTemperature.value.rounded()))°"
+                temperatureLabel.text = temperature(Int(current.temperature.value.rounded()))
+                conditionLabel.text = getCondition(current.condition)
+                
+                feelLikeLabel1.text = temperature(Int(current.apparentTemperature.value.rounded()))
                 windSpeedLabel1.text = "\(current.wind.speed.converted(to: .metersPerSecond).value.rounded()) м/с"
                 humidityLabel1.text = "\(Int(current.humidity.magnitude * 100))%"
                 uvLabel1.text = "\(current.uvIndex.value)"
                 
-                blockSunsetSunriseLenghtDayLabel1.text = "13ч 12м"
+                sunriseInformationLabel1.text = dateToTime(forecastDaily[1].sun.sunrise!, format: "HH:mm")
+                sunsetInformationLabel1.text = dateToTime(forecastDaily[1].sun.sunset!, format: "HH:mm")
+                
+                blockSunsetSunriseLenghtDayLabel1.text = getDayLenght(
+                    forecastDaily[1].sun.sunset?.timeIntervalSince1970,
+                    forecastDaily[1].sun.sunrise?.timeIntervalSince1970
+                )
             }
         }
     }
@@ -327,6 +400,107 @@ class ViewController: UIViewController {
         return forecast
       }.value
       return currentWeather
+    }
+    
+    private func dateToTime(_ date: Date, format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        let hoursMinutesString = dateFormatter.string(from: date)
+        return hoursMinutesString
+    }
+    
+    private func getDayLenght(_ time: TimeInterval?, _ time2: TimeInterval?) -> String {
+        
+        guard let timeInt = time, let timeInt2 = time2 else { return "error"}
+        let myNSDate = Date(timeIntervalSince1970: TimeInterval(timeInt2 - timeInt))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "Hч mmм"
+        let hoursMinutesString = dateFormatter.string(from: myNSDate)
+        return hoursMinutesString
+    }
+    
+    private func temperature(_ temp: Int) -> String {
+        if temp > 0 {
+            return "+\(temp)°"
+        } else {
+            return "\(temp)°"
+        }
+    }
+    
+    private func getCondition(_ condition: WeatherCondition) -> String {
+        switch condition {
+        case .blizzard:
+            return "Метель"
+        case .blowingDust:
+            return "Пыльно"
+        case .blowingSnow:
+            return "Метель"
+        case .breezy:
+            return "Прохладно"
+        case .clear:
+            return "Ясно"
+        case .cloudy:
+            return "Облачно"
+        case .drizzle:
+            return "Мелкий дождь"
+        case .flurries:
+            return "Шквалистый ветер"
+        case .foggy:
+            return "Тумано"
+        case .freezingDrizzle:
+            return "Изморозь"
+        case .freezingRain:
+            return "Ледяной дождь"
+        case .frigid:
+            return "Холодно"
+        case .hail:
+            return "Град"
+        case .haze:
+            return "Туман"
+        case .heavyRain:
+            return "Ливень"
+        case .heavySnow:
+            return "Снегопад"
+        case .hot:
+            return "Жарко"
+        case .hurricane:
+            return "Ураган"
+        case .isolatedThunderstorms:
+            return "Местами грозы"
+        case .mostlyClear:
+            return "Преимущественно ясно"
+        case .mostlyCloudy:
+            return "Преимущественно облачно"
+        case .partlyCloudy:
+            return "Местами облачно"
+        case .rain:
+            return "Дождь"
+        case .scatteredThunderstorms:
+            return "Рассеянные грозы"
+        case .sleet:
+            return "Мокрый снег"
+        case .smoky:
+            return "Думан"
+        case .snow:
+            return "Снег"
+        case .strongStorms:
+            return "Сильный шторм"
+        case .sunFlurries:
+            return ""
+        case .sunShowers:
+            return ""
+        case .thunderstorms:
+            return "Гроза"
+        case .tropicalStorm:
+            return "Тропическая буря"
+        case .windy:
+            return "Ветрено"
+        case .wintryMix:
+            return "Зимний микс"
+        default:
+            return ""
+        }
     }
 
 }

@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F092B732BD7BEB500D3067E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B722BD7BEB500D3067E /* ViewController.swift */; };
+		0F092B732BD7BEB500D3067E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B722BD7BEB500D3067E /* MainViewController.swift */; };
+		0F092B762BD9485D00D3067E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B752BD9485D00D3067E /* StartViewController.swift */; };
+		0F092B782BD9504D00D3067E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B772BD9504D00D3067E /* NetworkManager.swift */; };
 		4171256629C8503200CCE6D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171256529C8503200CCE6D4 /* AppDelegate.swift */; };
 		4171256829C8503200CCE6D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171256729C8503200CCE6D4 /* SceneDelegate.swift */; };
 		4171256F29C8503200CCE6D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4171256E29C8503200CCE6D4 /* Assets.xcassets */; };
@@ -27,7 +29,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0F092B722BD7BEB500D3067E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0F092B722BD7BEB500D3067E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0F092B752BD9485D00D3067E /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		0F092B772BD9504D00D3067E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4171256229C8503200CCE6D4 /* WheatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4171256529C8503200CCE6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4171256729C8503200CCE6D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +50,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F092B742BD9481C00D3067E /* StartScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0F092B752BD9485D00D3067E /* StartViewController.swift */,
+			);
+			path = StartScreen;
+			sourceTree = "<group>";
+		};
 		4171255929C8503200CCE6D4 = {
 			isa = PBXGroup;
 			children = (
@@ -66,19 +78,21 @@
 			isa = PBXGroup;
 			children = (
 				4171257E29C8637700CCE6D4 /* App */,
-				4171257929C8623500CCE6D4 /* ViewControllers */,
+				0F092B742BD9481C00D3067E /* StartScreen */,
+				4171257929C8623500CCE6D4 /* MainScreen */,
 				4171256E29C8503200CCE6D4 /* Assets.xcassets */,
 				4171257329C8503200CCE6D4 /* Info.plist */,
+				0F092B772BD9504D00D3067E /* NetworkManager.swift */,
 			);
 			path = WheatherForecast;
 			sourceTree = "<group>";
 		};
-		4171257929C8623500CCE6D4 /* ViewControllers */ = {
+		4171257929C8623500CCE6D4 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				0F092B722BD7BEB500D3067E /* ViewController.swift */,
+				0F092B722BD7BEB500D3067E /* MainViewController.swift */,
 			);
-			path = ViewControllers;
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 		4171257E29C8637700CCE6D4 /* App */ = {
@@ -160,7 +174,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F092B732BD7BEB500D3067E /* ViewController.swift in Sources */,
+				0F092B732BD7BEB500D3067E /* MainViewController.swift in Sources */,
+				0F092B762BD9485D00D3067E /* StartViewController.swift in Sources */,
+				0F092B782BD9504D00D3067E /* NetworkManager.swift in Sources */,
 				4171256629C8503200CCE6D4 /* AppDelegate.swift in Sources */,
 				4171256829C8503200CCE6D4 /* SceneDelegate.swift in Sources */,
 			);
