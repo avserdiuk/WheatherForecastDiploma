@@ -12,4 +12,11 @@ struct Location {
     let city: String
     let latitude: String
     let longitude: String
+    var temperature: String?
+    var condition: String?
+    var feelLike: String?
+    var windSpeed: String?
+    var humidity: String?
+    var uv: String?
+    
 }

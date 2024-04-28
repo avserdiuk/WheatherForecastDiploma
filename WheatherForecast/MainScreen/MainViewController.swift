@@ -12,7 +12,7 @@ import CoreLocation
 
 class MainViewController: UIViewController {
     
-    let service = WeatherService()
+    var location: Location?
     
     let time : String = {
         let date = Date()
@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Омск"
-        label.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 25, weight: .semibold)
         return label
     }()
     
@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Солнечно"
-        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 19, weight: .regular)
         return label
     }()
     
@@ -76,7 +76,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Ощущается"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
     }()
@@ -85,7 +85,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "+34°"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
         return label
     }()
@@ -103,7 +103,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Ветер"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
     }()
@@ -112,7 +112,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "5 м/с"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
         return label
     }()
@@ -130,7 +130,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Влажность"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
     }()
@@ -139,7 +139,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "58%"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
         return label
     }()
@@ -157,7 +157,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "УФ Индекс"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
     }()
@@ -166,7 +166,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "5"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
         return label
     }()
@@ -191,7 +191,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "ВОСХОД И ЗАКАТ"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
     }()
@@ -200,7 +200,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Световой день длится:"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
     }()
@@ -209,7 +209,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "13ч 12м"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
         return label
     }()
@@ -227,7 +227,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "ВОСХОД"
-        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
     }()
@@ -236,7 +236,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "08:35"
-        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
         return label
     }()
@@ -254,7 +254,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "ЗАКАТ"
-        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1))
         return label
     }()
@@ -263,7 +263,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "20:55"
-        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
         return label
     }()
@@ -327,7 +327,7 @@ class MainViewController: UIViewController {
             
             temperatureLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 0),
             temperatureLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
+            
             conditionLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 0),
             conditionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
@@ -355,152 +355,38 @@ class MainViewController: UIViewController {
             blockSunsetSunriseLenghtDayLabel1.leadingAnchor.constraint(equalTo: blockSunsetSunriseLenghtDayLabel.trailingAnchor, constant: 5),
             blockSunsetSunriseLenghtDayLabel1.topAnchor.constraint(equalTo: graphSunsetSunrise.bottomAnchor, constant: 16),
             
-            sunriseInformation.leadingAnchor.constraint(equalTo: graphSunsetSunrise.leadingAnchor, constant: 36),
+            sunriseInformation.leadingAnchor.constraint(equalTo: graphSunsetSunrise.leadingAnchor, constant: 33),
             sunriseInformation.topAnchor.constraint(equalTo: blockSunsetSunrise.topAnchor, constant: 58),
             
-            sunsetInformation.trailingAnchor.constraint(equalTo: graphSunsetSunrise.trailingAnchor, constant: -46),
+            sunsetInformation.trailingAnchor.constraint(equalTo: graphSunsetSunrise.trailingAnchor, constant: -43),
             sunsetInformation.topAnchor.constraint(equalTo: blockSunsetSunrise.topAnchor, constant: 58),
             
-            horizontLabel.trailingAnchor.constraint(equalTo: graphSunsetSunrise.trailingAnchor, constant: -5),
+            horizontLabel.trailingAnchor.constraint(equalTo: graphSunsetSunrise.trailingAnchor, constant: 0),
             horizontLabel.topAnchor.constraint(equalTo: graphSunsetSunrise.topAnchor, constant: 54),
             
         ])
         
-        getWeather()
+        guard let location else { return }
+        setup()
     }
     
     
-    private func getWeather(){
-        Task {
-            if let (current, forecastDaily, forecastHourly) = await weather(for: CLLocation(latitude: 54.983334, longitude: 73.366669)) {
-                temperatureLabel.text = temperature(Int(current.temperature.value.rounded()))
-                conditionLabel.text = getCondition(current.condition)
-                
-                feelLikeLabel1.text = temperature(Int(current.apparentTemperature.value.rounded()))
-                windSpeedLabel1.text = "\(current.wind.speed.converted(to: .metersPerSecond).value.rounded()) м/с"
-                humidityLabel1.text = "\(Int(current.humidity.magnitude * 100))%"
-                uvLabel1.text = "\(current.uvIndex.value)"
-                
-                sunriseInformationLabel1.text = dateToTime(forecastDaily[1].sun.sunrise!, format: "HH:mm")
-                sunsetInformationLabel1.text = dateToTime(forecastDaily[1].sun.sunset!, format: "HH:mm")
-                
-                blockSunsetSunriseLenghtDayLabel1.text = getDayLenght(
-                    forecastDaily[1].sun.sunset?.timeIntervalSince1970,
-                    forecastDaily[1].sun.sunrise?.timeIntervalSince1970
-                )
-            }
-        }
-    }
-    
-    private func weather(for location: CLLocation) async -> (CurrentWeather, Forecast<DayWeather>, Forecast<HourWeather>)? {
-      let currentWeather = await Task.detached(priority: .userInitiated) {
-        let forecast = try? await self.service.weather(
-          for: location,
-          including: .current, .daily, .hourly)
-        return forecast
-      }.value
-      return currentWeather
-    }
-    
-    private func dateToTime(_ date: Date, format: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        let hoursMinutesString = dateFormatter.string(from: date)
-        return hoursMinutesString
-    }
-    
-    private func getDayLenght(_ time: TimeInterval?, _ time2: TimeInterval?) -> String {
+    private func setup(){
         
-        guard let timeInt = time, let timeInt2 = time2 else { return "error"}
-        let myNSDate = Date(timeIntervalSince1970: TimeInterval(timeInt2 - timeInt))
+        locationLabel.text = location?.city
+        temperatureLabel.text = location?.temperature
+        conditionLabel.text = location?.condition
+        feelLikeLabel1.text = location?.feelLike
+        windSpeedLabel1.text = location?.windSpeed
+        humidityLabel1.text = location?.humidity
+        uvLabel1.text = location?.uv
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "Hч mmм"
-        let hoursMinutesString = dateFormatter.string(from: myNSDate)
-        return hoursMinutesString
+        //                sunriseInformationLabel1.text = dateToTime(forecastDaily[1].sun.sunrise!, format: "HH:mm")
+        //                sunsetInformationLabel1.text = dateToTime(forecastDaily[1].sun.sunset!, format: "HH:mm")
+        //
+        //                blockSunsetSunriseLenghtDayLabel1.text = getDayLenght(
+        //                    forecastDaily[1].sun.sunset?.timeIntervalSince1970,
+        //                    forecastDaily[1].sun.sunrise?.timeIntervalSince1970
+        //                )
     }
-    
-    private func temperature(_ temp: Int) -> String {
-        if temp > 0 {
-            return "+\(temp)°"
-        } else {
-            return "\(temp)°"
-        }
-    }
-    
-    private func getCondition(_ condition: WeatherCondition) -> String {
-        switch condition {
-        case .blizzard:
-            return "Метель"
-        case .blowingDust:
-            return "Пыльно"
-        case .blowingSnow:
-            return "Метель"
-        case .breezy:
-            return "Прохладно"
-        case .clear:
-            return "Ясно"
-        case .cloudy:
-            return "Облачно"
-        case .drizzle:
-            return "Мелкий дождь"
-        case .flurries:
-            return "Шквалистый ветер"
-        case .foggy:
-            return "Тумано"
-        case .freezingDrizzle:
-            return "Изморозь"
-        case .freezingRain:
-            return "Ледяной дождь"
-        case .frigid:
-            return "Холодно"
-        case .hail:
-            return "Град"
-        case .haze:
-            return "Туман"
-        case .heavyRain:
-            return "Ливень"
-        case .heavySnow:
-            return "Снегопад"
-        case .hot:
-            return "Жарко"
-        case .hurricane:
-            return "Ураган"
-        case .isolatedThunderstorms:
-            return "Местами грозы"
-        case .mostlyClear:
-            return "Преимущественно ясно"
-        case .mostlyCloudy:
-            return "Преимущественно облачно"
-        case .partlyCloudy:
-            return "Местами облачно"
-        case .rain:
-            return "Дождь"
-        case .scatteredThunderstorms:
-            return "Рассеянные грозы"
-        case .sleet:
-            return "Мокрый снег"
-        case .smoky:
-            return "Думан"
-        case .snow:
-            return "Снег"
-        case .strongStorms:
-            return "Сильный шторм"
-        case .sunFlurries:
-            return ""
-        case .sunShowers:
-            return ""
-        case .thunderstorms:
-            return "Гроза"
-        case .tropicalStorm:
-            return "Тропическая буря"
-        case .windy:
-            return "Ветрено"
-        case .wintryMix:
-            return "Зимний микс"
-        default:
-            return ""
-        }
-    }
-
 }

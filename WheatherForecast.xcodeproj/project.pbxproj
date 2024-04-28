@@ -13,7 +13,9 @@
 		0F092B7A2BDA553900D3067E /* GeoDecoderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B792BDA553900D3067E /* GeoDecoderModel.swift */; };
 		0F092B7D2BDA5B4500D3067E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B7C2BDA5B4500D3067E /* Models.swift */; };
 		0F092B7F2BDA6FC700D3067E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B7E2BDA6FC700D3067E /* CustomTableViewCell.swift */; };
-		0F092B882BDEBB9100D3067E /* FooterForTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B872BDEBB9100D3067E /* FooterForTableView.swift */; };
+		0F092B882BDEBB9100D3067E /* AppleWeatherTrademark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B872BDEBB9100D3067E /* AppleWeatherTrademark.swift */; };
+		0F092B8B2BDEC04300D3067E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B8A2BDEC04300D3067E /* WelcomeView.swift */; };
+		0F092B8D2BDECB6600D3067E /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B8C2BDECB6600D3067E /* WeatherManager.swift */; };
 		4171256629C8503200CCE6D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171256529C8503200CCE6D4 /* AppDelegate.swift */; };
 		4171256829C8503200CCE6D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4171256729C8503200CCE6D4 /* SceneDelegate.swift */; };
 		4171256F29C8503200CCE6D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4171256E29C8503200CCE6D4 /* Assets.xcassets */; };
@@ -39,7 +41,9 @@
 		0F092B792BDA553900D3067E /* GeoDecoderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDecoderModel.swift; sourceTree = "<group>"; };
 		0F092B7C2BDA5B4500D3067E /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		0F092B7E2BDA6FC700D3067E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
-		0F092B872BDEBB9100D3067E /* FooterForTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterForTableView.swift; sourceTree = "<group>"; };
+		0F092B872BDEBB9100D3067E /* AppleWeatherTrademark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleWeatherTrademark.swift; sourceTree = "<group>"; };
+		0F092B8A2BDEC04300D3067E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		0F092B8C2BDECB6600D3067E /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		4171256229C8503200CCE6D4 /* WheatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4171256529C8503200CCE6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4171256729C8503200CCE6D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,7 +67,7 @@
 			children = (
 				0F092B752BD9485D00D3067E /* StartViewController.swift */,
 				0F092B7E2BDA6FC700D3067E /* CustomTableViewCell.swift */,
-				0F092B872BDEBB9100D3067E /* FooterForTableView.swift */,
+				0F092B8A2BDEC04300D3067E /* WelcomeView.swift */,
 			);
 			path = StartScreen;
 			sourceTree = "<group>";
@@ -74,8 +78,18 @@
 				0F092B772BD9504D00D3067E /* NetworkManager.swift */,
 				0F092B792BDA553900D3067E /* GeoDecoderModel.swift */,
 				0F092B7C2BDA5B4500D3067E /* Models.swift */,
+				0F092B8C2BDECB6600D3067E /* WeatherManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		0F092B892BDEC02E00D3067E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0F092B872BDEBB9100D3067E /* AppleWeatherTrademark.swift */,
+			);
+			name = Views;
+			path = StartScreen/Views;
 			sourceTree = "<group>";
 		};
 		4171255929C8503200CCE6D4 = {
@@ -98,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				4171257E29C8637700CCE6D4 /* App */,
+				0F092B892BDEC02E00D3067E /* Views */,
 				0F092B742BD9481C00D3067E /* StartScreen */,
 				4171257929C8623500CCE6D4 /* MainScreen */,
 				0F092B7B2BDA592500D3067E /* Network */,
@@ -194,12 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F092B882BDEBB9100D3067E /* FooterForTableView.swift in Sources */,
+				0F092B882BDEBB9100D3067E /* AppleWeatherTrademark.swift in Sources */,
+				0F092B8D2BDECB6600D3067E /* WeatherManager.swift in Sources */,
 				0F092B732BD7BEB500D3067E /* MainViewController.swift in Sources */,
 				0F092B762BD9485D00D3067E /* StartViewController.swift in Sources */,
 				0F092B7F2BDA6FC700D3067E /* CustomTableViewCell.swift in Sources */,
 				0F092B782BD9504D00D3067E /* NetworkManager.swift in Sources */,
 				0F092B7A2BDA553900D3067E /* GeoDecoderModel.swift in Sources */,
+				0F092B8B2BDEC04300D3067E /* WelcomeView.swift in Sources */,
 				4171256629C8503200CCE6D4 /* AppDelegate.swift in Sources */,
 				4171256829C8503200CCE6D4 /* SceneDelegate.swift in Sources */,
 				0F092B7D2BDA5B4500D3067E /* Models.swift in Sources */,

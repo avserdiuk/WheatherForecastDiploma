@@ -22,7 +22,8 @@ class CustomTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Омск"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
+        label.preferredMaxLayoutWidth = 100
         return label
     }()
     
@@ -34,10 +35,27 @@ class CustomTableViewCell: UITableViewCell {
         return label
     }()
     
+    private lazy var condition: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Преимущественно ясно"
+        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        return label
+    }()
+    
     private lazy var image: UIImageView = {
         let imageview = UIImageView()
         imageview.image = UIImage(named: "sun")
         imageview.translatesAutoresizingMaskIntoConstraints = false
+        return imageview
+    }()
+    
+    private lazy var arrow: UIImageView = {
+        let imageview = UIImageView()
+        imageview.image = UIImage(systemName: "chevron.right")
+        imageview.translatesAutoresizingMaskIntoConstraints = false
+        imageview.tintColor = .lightGray
+        imageview.layer.opacity = 0.2
         return imageview
     }()
     
@@ -48,7 +66,9 @@ class CustomTableViewCell: UITableViewCell {
         addSubview(wrapper)
         wrapper.addSubview(title)
         wrapper.addSubview(temperature)
+        wrapper.addSubview(condition)
         wrapper.addSubview(image)
+        wrapper.addSubview(arrow)
         
         NSLayoutConstraint.activate([
             
@@ -60,15 +80,22 @@ class CustomTableViewCell: UITableViewCell {
             title.topAnchor.constraint(equalTo: wrapper.topAnchor, constant: 25),
             title.leadingAnchor.constraint(equalTo: wrapper.leadingAnchor, constant: 20),
             
-            temperature.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 13),
+            temperature.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5),
             temperature.leadingAnchor.constraint(equalTo: wrapper.leadingAnchor, constant: 20),
-            temperature.bottomAnchor.constraint(equalTo: wrapper.bottomAnchor, constant: -20),
             
-            image.topAnchor.constraint(equalTo: wrapper.topAnchor, constant: 33),
-            image.trailingAnchor.constraint(equalTo: wrapper.trailingAnchor, constant: -33),
+            condition.topAnchor.constraint(equalTo: temperature.bottomAnchor, constant: 5),
+            condition.leadingAnchor.constraint(equalTo: wrapper.leadingAnchor, constant: 20),
+            condition.bottomAnchor.constraint(equalTo: wrapper.bottomAnchor, constant: -20),
+            
+            image.topAnchor.constraint(equalTo: wrapper.topAnchor, constant: 23),
+            image.trailingAnchor.constraint(equalTo: wrapper.trailingAnchor, constant: -63),
             image.heightAnchor.constraint(equalToConstant: 88),
             image.widthAnchor.constraint(equalToConstant: 88),
             
+            arrow.centerYAnchor.constraint(equalTo: wrapper.centerYAnchor),
+            arrow.heightAnchor.constraint(equalToConstant: 40),
+            arrow.widthAnchor.constraint(equalToConstant: 15),
+            arrow.trailingAnchor.constraint(equalTo: wrapper.trailingAnchor, constant: -10),
             
         ])
         
@@ -80,5 +107,7 @@ class CustomTableViewCell: UITableViewCell {
     
     func setup(location: Location){
         title.text = location.city
+        temperature.text = location.temperature ?? "-"
+        condition.text = location.condition ?? "-"
     }
 }

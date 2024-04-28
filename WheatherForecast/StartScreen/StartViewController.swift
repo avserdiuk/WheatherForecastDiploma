@@ -11,7 +11,6 @@ import UIKit
 class StartViewController: UIViewController {
     
     var locations: [Location] = []
-    //private var points : [String] = []
     
     private lazy var searchBar : UISearchBar = {
         let bar = UISearchBar()
@@ -22,32 +21,58 @@ class StartViewController: UIViewController {
         return bar
     }()
     
+    private lazy var welcomeView: UIView = {
+        let view = WelcomeView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var table: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.delegate = self
         table.dataSource = self
         table.separatorStyle = .none
+        table.isHidden = true
+        table.showsVerticalScrollIndicator = false
         return table
+    }()
+    
+    private lazy var trademarkView: UIView = {
+        let view = AppleWeatherTrademarkView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(searchBar)
+        view.addSubview(welcomeView)
         view.addSubview(table)
+        view.addSubview(trademarkView)
         
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             searchBar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             searchBar.heightAnchor.constraint(equalToConstant: 46),
+            
+            welcomeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            welcomeView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            welcomeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            welcomeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             
             table.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10),
             table.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             table.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -55),
+            
+            trademarkView.topAnchor.constraint(equalTo: table.bottomAnchor, constant: 5),
+            trademarkView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            trademarkView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            trademarkView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
         
     }
@@ -58,21 +83,29 @@ extension StartViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let location = searchBar.text else { return }
-       // points = []
-        NetworkManager.shared.getCoordsWith(location){ location in
-            
-            DispatchQueue.main.async {
-
-                self.locations.insert(location, at: 0)
-                self.table.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-                self.searchBar.text = .none
+        guard let locationName = searchBar.text else { return }
+        
+        UIView.animate(withDuration: 2.5) {
+            self.welcomeView.isHidden = true
+            self.table.isHidden = false
+        }
+       
+        NetworkManager.shared.getCoordsWith(locationName){ location in
+            WeatherManager.shared.getWeatherAt(location) { weather in
+                var point = location
+                point.temperature = WeatherManager.shared.temperature(Int(weather.temperature.value.rounded()))
+                point.condition = WeatherManager.shared.getCondition(weather.condition)
+                point.feelLike = WeatherManager.shared.temperature(Int(weather.apparentTemperature.value.rounded()))
+                point.windSpeed = "\(weather.wind.speed.converted(to: .metersPerSecond).value.rounded()) м/с"
+                point.humidity = "\(Int(weather.humidity.magnitude * 100))%"
+                point.uv = "\(weather.uvIndex.value)"
                 
-//                self.locations.forEach { location in
-//                    self.points.append(location.city)
-//                }
-//                
-//                UserDefaults().setValue(self.points, forKey: "points")
+                DispatchQueue.main.async {
+
+                    self.locations.insert(point, at: 0)
+                    self.table.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                    self.searchBar.text = .none
+                }
             }
         }
     }
@@ -103,6 +136,10 @@ extension StartViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(MainViewController(), animated: true)
+        let controller = MainViewController()
+        controller.location = locations[indexPath.row]
+        navigationController?.pushViewController(controller, animated: true)
     }
+    
+    
 }
