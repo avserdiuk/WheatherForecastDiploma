@@ -6,17 +6,18 @@
 //
 
 import Foundation
+import WeatherKit
 
 struct Location {
     let country: String
     let city: String
     let latitude: String
     let longitude: String
-    var temperature: String?
-    var condition: String?
-    var feelLike: String?
-    var windSpeed: String?
-    var humidity: String?
-    var uv: String?
-    
+}
+
+struct WeatherPoint {
+    let location: Location
+    let current: CurrentWeather
+    let forecastDaily: Forecast<DayWeather>
+    let forecastHourly: Forecast<HourWeather>
 }

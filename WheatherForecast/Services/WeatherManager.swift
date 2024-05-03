@@ -18,25 +18,17 @@ class WeatherManager{
     private init(){}
     
     
-    func getWeatherAt(_ location: Location, complition: @escaping (CurrentWeather)->()){
+    func getWeatherAt(_ location: Location, complition: @escaping (WeatherPoint)->()){
         Task {
             if let (current, forecastDaily, forecastHourly) = await weather(for: CLLocation(latitude: Double(location.latitude) ?? 0, longitude: Double(location.longitude) ?? 0)) {
-//                temperatureLabel.text = temperature(Int(current.temperature.value.rounded()))
-//                conditionLabel.text = getCondition(current.condition)
-//                
-//                feelLikeLabel1.text = temperature(Int(current.apparentTemperature.value.rounded()))
-//                windSpeedLabel1.text = "\(current.wind.speed.converted(to: .metersPerSecond).value.rounded()) м/с"
-//                humidityLabel1.text = "\(Int(current.humidity.magnitude * 100))%"
-//                uvLabel1.text = "\(current.uvIndex.value)"
-//                
-//                sunriseInformationLabel1.text = dateToTime(forecastDaily[1].sun.sunrise!, format: "HH:mm")
-//                sunsetInformationLabel1.text = dateToTime(forecastDaily[1].sun.sunset!, format: "HH:mm")
-//                
-//                blockSunsetSunriseLenghtDayLabel1.text = getDayLenght(
-//                    forecastDaily[1].sun.sunset?.timeIntervalSince1970,
-//                    forecastDaily[1].sun.sunrise?.timeIntervalSince1970
-//                )
-                complition(current)
+                
+                let weatherPoint = WeatherPoint(
+                    location: location,
+                    current: current,
+                    forecastDaily: forecastDaily,
+                    forecastHourly: forecastHourly
+                )
+                complition(weatherPoint)
             }
         }
     }
@@ -59,10 +51,8 @@ class WeatherManager{
     }
     
     func getDayLenght(_ time: TimeInterval?, _ time2: TimeInterval?) -> String {
-        
         guard let timeInt = time, let timeInt2 = time2 else { return "error"}
         let myNSDate = Date(timeIntervalSince1970: TimeInterval(timeInt2 - timeInt))
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "Hч mmм"
         let hoursMinutesString = dateFormatter.string(from: myNSDate)
@@ -118,9 +108,9 @@ class WeatherManager{
         case .isolatedThunderstorms:
             return "Местами грозы"
         case .mostlyClear:
-            return "Преимущественно ясно"
+            return "Ясная погода"
         case .mostlyCloudy:
-            return "Преимущественно облачно"
+            return "Облачно"
         case .partlyCloudy:
             return "Местами облачно"
         case .rain:

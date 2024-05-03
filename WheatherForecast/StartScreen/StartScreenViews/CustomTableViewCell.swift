@@ -105,9 +105,9 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(location: Location){
-        title.text = location.city
-        temperature.text = location.temperature ?? "-"
-        condition.text = location.condition ?? "-"
+    func setup(weatherPoint: WeatherPoint){
+        title.text = weatherPoint.location.city
+        temperature.text = WeatherManager.shared.temperature(Int(weatherPoint.current.temperature.value.rounded()))
+        condition.text = WeatherManager.shared.getCondition(weatherPoint.current.condition)
     }
 }

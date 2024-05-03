@@ -23,7 +23,7 @@ class WelcomeView: UIView {
     private lazy var descript : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Для начала работы с погодой добавьте ваш город с помощью строки поиска локации сверху."
+        label.text = "Для начала работы с погодой добавьте ваш город с помощью строки поиска сверху."
         label.textColor = .systemGray
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -38,7 +38,7 @@ class WelcomeView: UIView {
         addSubview(descript)
         
         NSLayoutConstraint.activate([
-        
+            
             title.topAnchor.constraint(equalTo: super.topAnchor, constant: 0),
             title.centerXAnchor.constraint(equalTo: super.centerXAnchor),
             

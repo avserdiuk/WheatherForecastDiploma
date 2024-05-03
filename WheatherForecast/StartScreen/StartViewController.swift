@@ -10,7 +10,7 @@ import UIKit
 
 class StartViewController: UIViewController {
     
-    var locations: [Location] = []
+    var weatherPoints: [WeatherPoint] = []
     
     private lazy var searchBar : UISearchBar = {
         let bar = UISearchBar()
@@ -89,20 +89,11 @@ extension StartViewController: UISearchBarDelegate {
             self.welcomeView.isHidden = true
             self.table.isHidden = false
         }
-       
+        
         NetworkManager.shared.getCoordsWith(locationName){ location in
-            WeatherManager.shared.getWeatherAt(location) { weather in
-                var point = location
-                point.temperature = WeatherManager.shared.temperature(Int(weather.temperature.value.rounded()))
-                point.condition = WeatherManager.shared.getCondition(weather.condition)
-                point.feelLike = WeatherManager.shared.temperature(Int(weather.apparentTemperature.value.rounded()))
-                point.windSpeed = "\(weather.wind.speed.converted(to: .metersPerSecond).value.rounded()) м/с"
-                point.humidity = "\(Int(weather.humidity.magnitude * 100))%"
-                point.uv = "\(weather.uvIndex.value)"
-                
+            WeatherManager.shared.getWeatherAt(location) { weatherPoint in
                 DispatchQueue.main.async {
-
-                    self.locations.insert(point, at: 0)
+                    self.weatherPoints.insert(weatherPoint, at: 0)
                     self.table.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
                     self.searchBar.text = .none
                 }
@@ -117,27 +108,27 @@ extension StartViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        locations.count
+        weatherPoints.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = CustomTableViewCell()
-        cell.setup(location: locations[indexPath.row])
+        cell.setup(weatherPoint: weatherPoints[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-      if editingStyle == .delete {
-        self.locations.remove(at: indexPath.row)
-        self.table.deleteRows(at: [indexPath], with: .automatic)
-      }
+        if editingStyle == .delete {
+            self.weatherPoints.remove(at: indexPath.row)
+            self.table.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = MainViewController()
-        controller.location = locations[indexPath.row]
+        controller.weatherPoint = weatherPoints[indexPath.row]
         navigationController?.pushViewController(controller, animated: true)
     }
     
