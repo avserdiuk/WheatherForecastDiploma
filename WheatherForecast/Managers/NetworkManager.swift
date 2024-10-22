@@ -77,8 +77,6 @@ class NetworkManager {
             
             guard let resp = response as? HTTPURLResponse else { return }
             
-            //            print(resp.statusCode)
-            
             do {
                 let result = try JSONDecoder().decode(Wheather.self, from: data)
                 complition(result)

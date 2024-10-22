@@ -75,7 +75,30 @@ class StartViewController: UIViewController {
             trademarkView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
         
+        getStartItems()
+        
     }
+    
+    func getStartItems(){
+        CoreDataManager.shared.getLocations { location in
+            location.forEach {
+                    WeatherManager.shared.getWeatherAt($0) { weatherPoint in
+                        DispatchQueue.main.async {
+                            self.weatherPoints.insert(weatherPoint, at: 0)
+                            self.table.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                            self.table.reloadData()
+                            
+                            UIView.animate(withDuration: 2.5) {
+                                self.welcomeView.isHidden = true
+                                self.table.isHidden = false
+                            }
+                        }
+                    }
+            }
+        }
+    }
+    
+    
 }
 
 extension StartViewController: UISearchBarDelegate {
@@ -91,6 +114,7 @@ extension StartViewController: UISearchBarDelegate {
         }
         
         NetworkManager.shared.getCoordsWith(locationName){ location in
+            CoreDataManager.shared.addLocation(location)
             WeatherManager.shared.getWeatherAt(location) { weatherPoint in
                 DispatchQueue.main.async {
                     self.weatherPoints.insert(weatherPoint, at: 0)
@@ -121,6 +145,7 @@ extension StartViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            CoreDataManager.shared.removeItem(weatherPoints[indexPath.row].location)
             self.weatherPoints.remove(at: indexPath.row)
             self.table.deleteRows(at: [indexPath], with: .automatic)
         }

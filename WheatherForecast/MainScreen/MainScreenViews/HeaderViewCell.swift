@@ -75,8 +75,9 @@ class HeaderViewCell: UITableViewCell {
     }
     
     func setupWith(_ weatherPoint: WeatherPoint){
+        image.image = UIImage(named: "\(WeatherManager.shared.getCondition(weatherPoint.current.condition).1)")
         locationLabel.text = weatherPoint.location.city
         temperatureLabel.text = WeatherManager.shared.temperature(Int(weatherPoint.current.temperature.value.rounded()))
-        conditionLabel.text = WeatherManager.shared.getCondition(weatherPoint.current.condition)
+        conditionLabel.text = WeatherManager.shared.getCondition(weatherPoint.current.condition).0
     }
 }

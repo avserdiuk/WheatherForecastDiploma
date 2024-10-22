@@ -108,6 +108,8 @@ class CustomTableViewCell: UITableViewCell {
     func setup(weatherPoint: WeatherPoint){
         title.text = weatherPoint.location.city
         temperature.text = WeatherManager.shared.temperature(Int(weatherPoint.current.temperature.value.rounded()))
-        condition.text = WeatherManager.shared.getCondition(weatherPoint.current.condition)
+        condition.text = WeatherManager.shared.getCondition(weatherPoint.current.condition).0
+        image.image = UIImage(named: "\(WeatherManager.shared.getCondition(weatherPoint.current.condition).1)")
     }
 }
+

@@ -165,7 +165,7 @@ class BriefViewCell: UITableViewCell {
     
     func setupWith(_ weatherPoint: WeatherPoint){
         feelLikeLabel1.text = WeatherManager.shared.temperature(Int(weatherPoint.current.apparentTemperature.value.rounded()))
-        windSpeedLabel1.text = "\(weatherPoint.current.wind.speed.converted(to: .metersPerSecond).value.rounded()) м/с"
+        windSpeedLabel1.text = "\(Int(weatherPoint.current.wind.speed.converted(to: .metersPerSecond).value.rounded())) м/с"
         humidityLabel1.text = "\(Int(weatherPoint.current.humidity.magnitude * 100))%"
         uvLabel1.text = "\(weatherPoint.current.uvIndex.value)"
     }

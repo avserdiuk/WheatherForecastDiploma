@@ -11,6 +11,7 @@ import UIKit
 class Block24hViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var weatherPoint: WeatherPoint?
+    private var currentHour: Int = Calendar.current.component(.hour, from: Date())
     
     private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -42,8 +43,8 @@ class Block24hViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
             collection.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             collection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
         ])
-        
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -61,7 +62,7 @@ class Block24hViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
             cell.layer.borderColor = CGColor(red: 120/255, green: 198/255, blue: 240/155, alpha: 1)
         }
         if let wp = weatherPoint {
-            cell.setupWith(wp, index: indexPath.item) // TODO: разобраться в корректной передаче индекса относительно текущего часа
+            cell.setupWith(wp, index: currentHour + indexPath.item) 
         }
         return cell
     }

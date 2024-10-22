@@ -78,7 +78,7 @@ class Forecast10dViewCell: UITableViewCell {
     
     func setupWith(_ weatherPoint: WeatherPoint, index: Int){
         date.text = WeatherManager.shared.dateToTime(weatherPoint.forecastDaily.forecast[index].date, format: "dd.MM, E")
-        condition.text = WeatherManager.shared.getCondition(weatherPoint.forecastDaily[index].condition)
+        condition.text = WeatherManager.shared.getCondition(weatherPoint.forecastDaily[index].condition).0
         minMax.text = "\(WeatherManager.shared.temperature(Int(weatherPoint.forecastDaily[index].lowTemperature.value.rounded())))/\(WeatherManager.shared.temperature(Int(weatherPoint.forecastDaily[index].highTemperature.value.rounded())))"
         
     }
