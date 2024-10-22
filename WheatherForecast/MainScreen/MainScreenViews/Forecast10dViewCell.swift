@@ -13,7 +13,7 @@ class Forecast10dViewCell: UITableViewCell {
     private lazy var wrapper : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(cgColor: CGColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1))
+        view.backgroundColor = UIColor(named: "backgroundSecondary")
         view.layer.cornerRadius = 11
         return view
     }()

@@ -14,7 +14,7 @@ class BriefViewCell: UITableViewCell {
         let view = UIStackView()
         view.axis = .horizontal
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(cgColor: CGColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1))
+        view.backgroundColor = UIColor(named: "backgroundSecondary")
         view.layer.cornerRadius = 11
         view.distribution = .fillEqually
         return view
@@ -43,7 +43,7 @@ class BriefViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "+34°"
         label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
+        label.textColor = UIColor(named: "textColor")
         return label
     }()
     
@@ -70,7 +70,7 @@ class BriefViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "5 м/с"
         label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
+        label.textColor = UIColor(named: "textColor")
         return label
     }()
     
@@ -97,7 +97,7 @@ class BriefViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "58%"
         label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
+        label.textColor = UIColor(named: "textColor")
         return label
     }()
     
@@ -124,7 +124,7 @@ class BriefViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "5"
         label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        label.textColor = UIColor(cgColor: CGColor(red: 44/255, green: 44/255, blue: 44/255, alpha: 1))
+        label.textColor = UIColor(named: "textColor")
         return label
     }()
     

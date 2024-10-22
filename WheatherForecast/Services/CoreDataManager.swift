@@ -44,13 +44,16 @@ class CoreDataManager{
         saveContext()
     }
     
-    func getLocations(complition: @escaping ([Location])->()){
+    func getLocations(complition: @escaping ([Location]?)->()){
         let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Locations> = Locations.fetchRequest()
         do {
             let objects = try context.fetch(fetchRequest)
             
-            guard objects != [] else { return }
+            guard objects != [] else {
+                complition(nil)
+                return
+            }
             
             var locations : [Location] = []
             

@@ -24,6 +24,7 @@ class StartViewController: UIViewController {
     private lazy var welcomeView: UIView = {
         let view = WelcomeView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
         return view
     }()
     
@@ -46,7 +47,7 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "background")
         view.addSubview(searchBar)
         view.addSubview(welcomeView)
         view.addSubview(table)
@@ -81,6 +82,12 @@ class StartViewController: UIViewController {
     
     func getStartItems(){
         CoreDataManager.shared.getLocations { location in
+            
+            guard let location else {
+                self.welcomeView.isHidden = false
+                return
+            }
+            
             location.forEach {
                     WeatherManager.shared.getWeatherAt($0) { weatherPoint in
                         DispatchQueue.main.async {

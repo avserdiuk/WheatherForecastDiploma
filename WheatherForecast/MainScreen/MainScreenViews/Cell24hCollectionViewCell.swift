@@ -42,7 +42,7 @@ class Cell24hCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        backgroundColor = UIColor(cgColor: CGColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1))
+        backgroundColor = UIColor(named: "backgroundSecondary")
         layer.borderColor = .none
         layer.borderWidth = 0
     }
@@ -50,7 +50,7 @@ class Cell24hCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor(cgColor: CGColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1))
+        backgroundColor = UIColor(named: "backgroundSecondary")
         layer.cornerRadius = 15
         
         addSubview(stack)

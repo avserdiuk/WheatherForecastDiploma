@@ -43,7 +43,7 @@ class MainViewController: UIViewController {
         
         //navigationController?.navigationBar.isHidden = true
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "background")
         view.addSubview(tableView)
         view.addSubview(trademarkView)
         
