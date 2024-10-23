@@ -12,99 +12,57 @@ class StartViewController: UIViewController {
     
     var weatherPoints: [WeatherPoint] = []
     
-    private lazy var searchBar : UISearchBar = {
-        let bar = UISearchBar()
-        bar.searchBarStyle = .minimal
-        bar.placeholder = "Поиск локации"
-        bar.translatesAutoresizingMaskIntoConstraints = false
-        bar.delegate = self
-        return bar
-    }()
-    
-    private lazy var welcomeView: UIView = {
-        let view = WelcomeView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isHidden = true
-        return view
-    }()
-    
-    private lazy var table: UITableView = {
-        let table = UITableView(frame: .zero, style: .plain)
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.delegate = self
-        table.dataSource = self
-        table.separatorStyle = .none
-        table.isHidden = true
-        table.showsVerticalScrollIndicator = false
-        return table
-    }()
-    
-    private lazy var trademarkView: UIView = {
-        let view = AppleWeatherTrademarkView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    override func loadView() {
+        self.view = StartScreenView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "background")
-        view.addSubview(searchBar)
-        view.addSubview(welcomeView)
-        view.addSubview(table)
-        view.addSubview(trademarkView)
         
-        NSLayoutConstraint.activate([
-            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            searchBar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            searchBar.heightAnchor.constraint(equalToConstant: 46),
-            
-            welcomeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            welcomeView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            welcomeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            welcomeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            
-            table.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10),
-            table.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            table.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -55),
-            
-            trademarkView.topAnchor.constraint(equalTo: table.bottomAnchor, constant: 5),
-            trademarkView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            trademarkView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            trademarkView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
-        ])
+        view().table.delegate = self
+        view().table.dataSource = self
+        view().searchBar.delegate = self
         
         getStartItems()
         
     }
     
-    func getStartItems(){
+    private func view() -> StartScreenView {
+        return self.view as! StartScreenView
+    }
+    
+    private func getStartItems(){
         CoreDataManager.shared.getLocations { location in
             
             guard let location else {
-                self.welcomeView.isHidden = false
+                self.view().welcomeView.isHidden = false
                 return
             }
             
             location.forEach {
-                    WeatherManager.shared.getWeatherAt($0) { weatherPoint in
-                        DispatchQueue.main.async {
-                            self.weatherPoints.insert(weatherPoint, at: 0)
-                            self.table.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-                            self.table.reloadData()
-                            
-                            UIView.animate(withDuration: 2.5) {
-                                self.welcomeView.isHidden = true
-                                self.table.isHidden = false
-                            }
+                WeatherManager.shared.getWeatherAt($0) { weatherPoint in
+                    DispatchQueue.main.async {
+                        self.weatherPoints.insert(weatherPoint, at: 0)
+                        self.view().table.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                        self.view().table.reloadData()
+                        
+                        UIView.animate(withDuration: 2.5) {
+                            self.view().welcomeView.isHidden = true
+                            self.view().table.isHidden = false
                         }
                     }
+                }
             }
         }
     }
     
+    
+    private func existAlert(){
+        let alert = UIAlertController(title: "Ошибка", message: "Такая локация уже добавлена", preferredStyle: .alert)
+        let action = UIAlertAction(title: "ОК", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
     
 }
 
@@ -116,19 +74,27 @@ extension StartViewController: UISearchBarDelegate {
         guard let locationName = searchBar.text else { return }
         
         UIView.animate(withDuration: 2.5) {
-            self.welcomeView.isHidden = true
-            self.table.isHidden = false
+            self.view().welcomeView.isHidden = true
+            self.view().table.isHidden = false
         }
         
         NetworkManager.shared.getCoordsWith(locationName){ location in
-            CoreDataManager.shared.addLocation(location)
-            WeatherManager.shared.getWeatherAt(location) { weatherPoint in
-                DispatchQueue.main.async {
-                    self.weatherPoints.insert(weatherPoint, at: 0)
-                    self.table.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-                    self.searchBar.text = .none
+            CoreDataManager.shared.addLocation(location){ result in
+                guard result else {
+                    DispatchQueue.main.async {
+                        self.existAlert()
+                    }
+                    return
+                }
+                WeatherManager.shared.getWeatherAt(location) { weatherPoint in
+                    DispatchQueue.main.async {
+                        self.weatherPoints.insert(weatherPoint, at: 0)
+                        self.view().table.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                        self.view().searchBar.text = .none
+                    }
                 }
             }
+            
         }
     }
 }
@@ -154,7 +120,7 @@ extension StartViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             CoreDataManager.shared.removeItem(weatherPoints[indexPath.row].location)
             self.weatherPoints.remove(at: indexPath.row)
-            self.table.deleteRows(at: [indexPath], with: .automatic)
+            self.view().table.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     

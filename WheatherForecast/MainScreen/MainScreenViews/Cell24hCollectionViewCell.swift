@@ -75,5 +75,6 @@ class Cell24hCollectionViewCell: UICollectionViewCell {
     func setupWith(_ weatherPoint: WeatherPoint, index: Int) {
         hour.text = WeatherManager.shared.dateToTime(weatherPoint.forecastHourly.forecast[index].date, format: "HH")
         temperature.text =  WeatherManager.shared.temperature(Int(weatherPoint.forecastHourly.forecast[index].temperature.value.rounded()))
+        image.image = UIImage(named: "\(WeatherManager.shared.getCondition(weatherPoint.forecastHourly.forecast[index].condition).1)")
     }
 }

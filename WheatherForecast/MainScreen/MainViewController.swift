@@ -14,54 +14,22 @@ class MainViewController: UIViewController {
     
     var weatherPoint: WeatherPoint?
     
-    private lazy var tableView : UITableView = {
-        let table = UITableView(frame: .zero, style: .plain)
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.delegate = self
-        table.dataSource = self
-        table.separatorStyle = .none
-        table.showsVerticalScrollIndicator = false
-        return table
-    }()
-    
-    let time : String = {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let hoursMinutesString = dateFormatter.string(from: date)
-        return hoursMinutesString
-    }()
-    
-    private lazy var trademarkView: UIView = {
-        let view = AppleWeatherTrademarkView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    override func loadView(){
+        view = MainScreenView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //navigationController?.navigationBar.isHidden = true
+        view().tableView.delegate = self
+        view().tableView.dataSource = self
         
-        view.backgroundColor = UIColor(named: "background")
-        view.addSubview(tableView)
-        view.addSubview(trademarkView)
-        
-        NSLayoutConstraint.activate([
-        
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -55),
-            
-            trademarkView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 5),
-            trademarkView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            trademarkView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            trademarkView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
-            
-        ])
     }
-
+    
+    private func view() -> MainScreenView {
+        return self.view as! MainScreenView
+    }
+    
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {

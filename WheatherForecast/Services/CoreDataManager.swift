@@ -11,7 +11,7 @@ class CoreDataManager{
     
     static let shared = CoreDataManager()
     private init(){}
-    
+
     lazy var persistentContainer: NSPersistentContainer = {
         
         let container = NSPersistentContainer(name: "WheatherForecast")
@@ -35,13 +35,30 @@ class CoreDataManager{
         }
     }
     
-    func addLocation(_ location: Location){
-        let newLocation = Locations(context: persistentContainer.viewContext)
-        newLocation.city = location.city
-        newLocation.country = location.country
-        newLocation.latitude = location.latitude
-        newLocation.longitude = location.longitude
-        saveContext()
+    func addLocation(_ location: Location, complition: @escaping (Bool) -> Void)  {
+        
+        let context = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Locations> = Locations.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "city = %@", location.city)
+        
+        do {
+            let objects = try context.fetch(fetchRequest)
+            if objects.isEmpty {
+                let newLocation = Locations(context: persistentContainer.viewContext)
+                newLocation.city = location.city
+                newLocation.country = location.country
+                newLocation.latitude = location.latitude
+                newLocation.longitude = location.longitude
+                saveContext()
+                complition(true)
+            } else {
+                print("location already exists")
+                complition(false)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        
     }
     
     func getLocations(complition: @escaping ([Location]?)->()){
@@ -60,7 +77,7 @@ class CoreDataManager{
             objects.forEach {
                 locations.append(Location(country: $0.country!, city: $0.city!, latitude: $0.latitude!, longitude: $0.longitude!))
             }
-    
+            
             complition(locations)
         } catch {
             print(error.localizedDescription)
@@ -77,7 +94,7 @@ class CoreDataManager{
             object.forEach { locations in
                 context.delete(locations)
             }
-           
+            
             saveContext()
         } catch {
             print(error.localizedDescription)

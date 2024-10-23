@@ -132,8 +132,8 @@ class WeatherManager{
 //            return "Мокрый снег"
 //        case .smoky:
 //            return "Думан"
-//        case .snow:
-//            return "Снег"
+        case .snow:
+            return ("Снег", "snow")
 //        case .strongStorms:
 //            return "Сильный шторм"
 //        case .sunFlurries:

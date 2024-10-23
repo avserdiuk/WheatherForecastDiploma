@@ -22,6 +22,9 @@
 		0F092B962BDFB5FC00D3067E /* Block24hViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B952BDFB5FC00D3067E /* Block24hViewCell.swift */; };
 		0F092B982BDFBB8A00D3067E /* Cell24hCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B972BDFBB8A00D3067E /* Cell24hCollectionViewCell.swift */; };
 		0F092B9A2BDFD56B00D3067E /* Forecast10dViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F092B992BDFD56A00D3067E /* Forecast10dViewCell.swift */; };
+		0F1C47B52CC8B73800C1F05B /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C47B42CC8B73000C1F05B /* StartScreenView.swift */; };
+		0F1C47B82CC8C02C00C1F05B /* AppMetricaCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0F1C47B72CC8C02C00C1F05B /* AppMetricaCore */; };
+		0F1C47BA2CC8C1CE00C1F05B /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C47B92CC8C1CD00C1F05B /* MainScreenView.swift */; };
 		0FF021922CC66B5C00E09B29 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF021912CC66B5700E09B29 /* CoreDataManager.swift */; };
 		0FF021962CC66CAE00E09B29 /* WheatherForecast.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0FF021932CC66CAE00E09B29 /* WheatherForecast.xcdatamodeld */; };
 		0FF021982CC696E900E09B29 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FF021972CC696E900E09B29 /* Launch Screen.storyboard */; };
@@ -59,6 +62,8 @@
 		0F092B952BDFB5FC00D3067E /* Block24hViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block24hViewCell.swift; sourceTree = "<group>"; };
 		0F092B972BDFBB8A00D3067E /* Cell24hCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell24hCollectionViewCell.swift; sourceTree = "<group>"; };
 		0F092B992BDFD56A00D3067E /* Forecast10dViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast10dViewCell.swift; sourceTree = "<group>"; };
+		0F1C47B42CC8B73000C1F05B /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
+		0F1C47B92CC8C1CD00C1F05B /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		0FF021912CC66B5700E09B29 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		0FF021942CC66CAE00E09B29 /* CoreDataProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataProject.xcdatamodel; sourceTree = "<group>"; };
 		0FF021952CC66CAE00E09B29 /* WheatherForecast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WheatherForecast.xcdatamodel; sourceTree = "<group>"; };
@@ -75,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F1C47B82CC8C02C00C1F05B /* AppMetricaCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +118,7 @@
 		0F092B942BDF9C8200D3067E /* MainScreenViews */ = {
 			isa = PBXGroup;
 			children = (
+				0F1C47B92CC8C1CD00C1F05B /* MainScreenView.swift */,
 				0F092B8E2BDF96B200D3067E /* HeaderViewCell.swift */,
 				0F092B902BDF993100D3067E /* BriefViewCell.swift */,
 				0F092B922BDF9A6900D3067E /* SunriseSunetViewCell.swift */,
@@ -125,6 +132,7 @@
 		0F092B9B2BE2D28E00D3067E /* StartScreenViews */ = {
 			isa = PBXGroup;
 			children = (
+				0F1C47B42CC8B73000C1F05B /* StartScreenView.swift */,
 				0F092B7E2BDA6FC700D3067E /* CustomTableViewCell.swift */,
 				0F092B8A2BDEC04300D3067E /* WelcomeView.swift */,
 			);
@@ -238,6 +246,9 @@
 				ru,
 			);
 			mainGroup = 4171255929C8503200CCE6D4;
+			packageReferences = (
+				0F1C47B62CC8C02C00C1F05B /* XCRemoteSwiftPackageReference "appmetrica-sdk-ios" */,
+			);
 			productRefGroup = 4171256329C8503200CCE6D4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -273,12 +284,14 @@
 				0FF021922CC66B5C00E09B29 /* CoreDataManager.swift in Sources */,
 				0FF021962CC66CAE00E09B29 /* WheatherForecast.xcdatamodeld in Sources */,
 				0F092B912BDF993100D3067E /* BriefViewCell.swift in Sources */,
+				0F1C47B52CC8B73800C1F05B /* StartScreenView.swift in Sources */,
 				0F092B7A2BDA553900D3067E /* GeoDecoderModel.swift in Sources */,
 				0F092B9A2BDFD56B00D3067E /* Forecast10dViewCell.swift in Sources */,
 				0F092B8F2BDF96B200D3067E /* HeaderViewCell.swift in Sources */,
 				0F092B962BDFB5FC00D3067E /* Block24hViewCell.swift in Sources */,
 				0F092B932BDF9A6900D3067E /* SunriseSunetViewCell.swift in Sources */,
 				0F092B8B2BDEC04300D3067E /* WelcomeView.swift in Sources */,
+				0F1C47BA2CC8C1CE00C1F05B /* MainScreenView.swift in Sources */,
 				4171256629C8503200CCE6D4 /* AppDelegate.swift in Sources */,
 				4171256829C8503200CCE6D4 /* SceneDelegate.swift in Sources */,
 				0F092B7D2BDA5B4500D3067E /* WeatherPointModel.swift in Sources */,
@@ -431,7 +444,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.enzo.wheatherforecast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -470,7 +483,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.enzo.wheatherforecast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -505,6 +518,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0F1C47B62CC8C02C00C1F05B /* XCRemoteSwiftPackageReference "appmetrica-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/appmetrica/appmetrica-sdk-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0F1C47B72CC8C02C00C1F05B /* AppMetricaCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F1C47B62CC8C02C00C1F05B /* XCRemoteSwiftPackageReference "appmetrica-sdk-ios" */;
+			productName = AppMetricaCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0FF021932CC66CAE00E09B29 /* WheatherForecast.xcdatamodeld */ = {
